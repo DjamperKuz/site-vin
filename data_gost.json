@@ -1,0 +1,4 @@
+{
+    "info_gost": "Не найден среди отзывных кампаний",
+    "error_gost": "'NoneType' object has no attribute 'stripped_strings'"
+}
