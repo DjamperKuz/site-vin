@@ -15,7 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 def pars_site_gibdd(vin, options):  # парсинг сайта ГИБДД, возвращает dict с информацией о машине
     try:  # запуск и проверка сайта на работоспособность
-        browser = webdriver.Chrome(r"C:\chromedriver\chromedriver.exe", options=options)
+        browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options)
         browser.get('https://xn--90adear.xn--p1ai/check/auto')
         browser.set_page_load_timeout(10)
     except Exception as ex:
@@ -160,7 +160,7 @@ def pars_site_gibdd(vin, options):  # парсинг сайта ГИБДД, во
 
 def pars_site_bidfax(vin):  # парсинг сайта bidfax, возвращает dict с информацией о машине
     try:  # запуск и проверка сайта на работоспособность
-        browser = webdriver.Chrome(r"C:\chromedriver\chromedriver.exe")
+        browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe")
         browser.get(f"https://bidfax.info/")
         browser.set_page_load_timeout(10)
     except Exception as ex:
@@ -218,16 +218,15 @@ def pars_site_bidfax(vin):  # парсинг сайта bidfax, возвраща
 
 
 def pars_site_nicb(vin, options):
-    options.add_argument('--disable-blink-features=AutomationControlled')
-    browser = webdriver.Chrome(r"C:\chromedriver\chromedriver.exe", options=options)
+    browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options)
     browser.get(f"https://www.nicb.org/vincheck")
     browser.set_page_load_timeout(10)
 
     elem = browser.find_element(By.CLASS_NAME, 'form-control')  # вставляем VIN в строку
     elem.send_keys(vin + Keys.RETURN)
 
-    browser.find_element(By.ID, 'vincheck-recaptcha').find_element_by_tag_name('iframe').click()
     WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.NAME, "agree_terms"))).click()
+    browser.find_element(By.ID, 'vincheck-recaptcha').find_element_by_tag_name('iframe').click()
 
     time.sleep(300)  # КАПЧА, не работает
 
@@ -240,7 +239,7 @@ def pars_site_autoastat(vin, options):
         }
     }
     try:  # запуск и проверка сайта на работоспособность
-        browser = wier_webdriver.Chrome(r"C:\chromedriver\chromedriver.exe", options=options,
+        browser = wier_webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options,
                                         seleniumwire_options=proxy_options)
         browser.get(f'https://autoastat.com/en/')
         browser.set_page_load_timeout(10)
@@ -313,7 +312,7 @@ def pars_site_autoastat(vin, options):
 
 
 def pars_site_reestr_zalogov(vin):
-    browser = webdriver.Chrome(r"C:\chromedriver\chromedriver.exe")
+    browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe")
     browser.get('https://www.reestr-zalogov.ru/search')
 
     WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.LINK_TEXT,
@@ -342,7 +341,7 @@ def pars_site_vinfax(vin):
 
 def pars_site_gost(vin, options):
     try:
-        browser = webdriver.Chrome(r"C:\chromedriver\chromedriver.exe", options=options)
+        browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options)
         browser.get(f'https://easy.gost.ru/')
         browser.set_page_load_timeout(10)
     except Exception as ex:
@@ -392,7 +391,7 @@ def pars_site_mvdgov(options):
             'https': 'http://NiVprTat:GE5KUKUF@45.138.159.160:45150'
         }
     }
-    browser = wier_webdriver.Chrome(r"C:\chromedriver\chromedriver.exe", options=options,
+    browser = wier_webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options,
                                     seleniumwire_options=proxy_options)
     browser.get(f'https://www.reg.ru/web-tools/myip')
     browser.set_page_load_timeout(10)
@@ -425,3 +424,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
