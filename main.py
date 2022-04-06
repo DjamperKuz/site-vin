@@ -13,11 +13,16 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 
 
+def get_browser(url, options=None):
+    browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options)
+    browser.get(url)
+    browser.set_page_load_timeout(10)
+    return browser
+
+
 def pars_site_gibdd(vin, options):  # парсинг сайта ГИБДД, возвращает dict с информацией о машине
     try:  # запуск и проверка сайта на работоспособность
-        browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options)
-        browser.get('https://xn--90adear.xn--p1ai/check/auto')
-        browser.set_page_load_timeout(10)
+        browser = get_browser('https://xn--90adear.xn--p1ai/check/auto', options)
     except Exception as ex:
         car_info_gibdd = {'info_gibdd': 'Сайт не работает',
                           'error_gibdd': str(ex)
@@ -59,99 +64,96 @@ def pars_site_gibdd(vin, options):  # парсинг сайта ГИБДД, во
         soup = BeautifulSoup(source, "lxml")
 
         # сбор информации о регистрации в гибдд
-        car_info_reg = {}
         try:
             soup_reg = soup.find('div', id='checkAutoHistory', class_='checkAutoSection')\
                                 .find('ul', class_='fields-list vehicle')
-            car_info_reg['reg'] = dict(zip([item.get_text(strip=True).replace('\n', '').replace(' ', '_') for item in
-                                            soup_reg.find_all('span', class_='caption')],
-                                           [item.get_text(strip=True).replace('\n', '') for item in
-                                            soup_reg.find_all('span', class_='field')]))
+            car_info_reg = dict(zip([item.get_text(strip=True).replace('\n', '').replace(' ', '_') for item in
+                                    soup_reg.find_all('span', class_='caption')],
+                                    [item.get_text(strip=True).replace('\n', '') for item in
+                                    soup_reg.find_all('span', class_='field')]))
         except Exception as ex:
-            car_info_reg['reg'] = {'info_reg': 'Нет информации',
-                                   'error_reg': str(ex)}
+            car_info_reg = {'info_reg': 'Нет информации',
+                            'error_reg': str(ex)}
 
         # сбор информации о дтп
-        car_info_dtp = {}
-        dtp_dict = {}
         try:
             text = 'В результате обработки запроса к АИУС ГИБДД записи о дорожно-транспортных происшествиях не найдены.'
             if text in soup.find('div', id='checkAutoContainer').get_text():
-                car_info_dtp['dtp'] = {'info_dtp': text}
+                car_info_dtp = {'info_dtp': text}
             else:
+                car_info_dtp = {}
+
                 soup_dtp = soup.find('div', id='checkAutoAiusdtp', class_='checkAutoSection')\
                                     .find('ul', class_='aiusdtp-list').find_all('ul', class_='fields-list aiusdtp-data')
 
-                soup_dtp_number = soup.find('div', id='checkAutoAiusdtp',
-                                            class_='checkAutoSection').find_all('p', class_='ul-title')
+                # soup_dtp_number = soup.find('div', id='checkAutoAiusdtp',
+                #                            class_='checkAutoSection').find_all('p', class_='ul-title')
 
-                for i, number in enumerate(soup_dtp_number):
-                    dtp_dict[f'dtp_№_{i}'] = number.get_text()
+                # for i, number in enumerate(soup_dtp_number):
+                #    car_info_dtp[f'dtp_№_{i}'] = number.get_text()
 
                 for i, object in enumerate(soup_dtp):
-                    dtp_dict[f'dtp_{i}'] = dict(
+                    car_info_dtp[f'dtp_№_{i}'] = i
+                    car_info_dtp = dict(
                         zip([item.get_text(strip=True).replace('\n', '').replace(' ', '_') for item in
                              object.find_all('span', class_='caption')],
                             [item.get_text(strip=True).replace('\n', '') for item in
                              object.find_all('span', class_='field')]))
-
-                car_info_dtp['dtp'] = dtp_dict
         except Exception as ex:
-            car_info_dtp['dtp'] = {'info_dtp': 'Сервис не работает',
-                                   'error_dtp': str(ex)}
+            car_info_dtp = {'info_dtp': 'Сервис не работает',
+                            'error_dtp': str(ex)}
 
         # сбор информации о розыске
-        car_info_roz = {}
-        roz_dict = {}
         try:
             text = 'По указанному VIN (номер кузова или шасси) не найдена информация о розыске транспортного средства.'
             if text in soup.find('div', id='checkAutoContainer').get_text():
-                car_info_roz['roz'] = {'info_roz': text}
+                car_info_roz = {'info_roz': text}
             else:
+                car_info_roz = {}
+
                 soup_roz = soup.find('div', id='checkAutoWanted', class_='checkAutoSection')\
                     .find('ul', class_='wanted-list').find_all('ul', class_='fields-list wanted-data')
 
-                soup_roz_number = soup.find('div', id='checkAutoWanted',
-                                            class_='checkAutoSection').find_all('p', class_='ul-title')
+                # soup_roz_number = soup.find('div', id='checkAutoWanted',
+                #                            class_='checkAutoSection').find_all('p', class_='ul-title')
 
-                for i, number in enumerate(soup_roz_number):
-                    roz_dict[f'roz_№_{i}'] = number.get_text()
+                # for i, number in enumerate(soup_roz_number):
+                #    car_info_roz[f'roz_№_{i}'] = number.get_text()
 
                 for i, object in enumerate(soup_roz):
-                    roz_dict[f'roz_{i}'] = dict(
+                    car_info_roz[f'roz_№_{i}'] = i
+                    car_info_roz = dict(
                         zip([item.get_text(strip=True).replace('\n', '').replace(' ', '_') for item in
                              object.find_all('span', class_='caption')],
                             [item.get_text(strip=True).replace('\n', '') for item in
                              object.find_all('span', class_='field')]))
-
-                    car_info_roz['roz'] = roz_dict
         except Exception as ex:
-            car_info_roz['roz'] = {'info_roz': 'Сервис не работает',
-                                   'error_roz': str(ex)}
+            car_info_roz = {'info_roz': 'Сервис не работает',
+                            'error_roz': str(ex)}
 
         # сбор информации о наложенных ограничениях
-        ogran_dict = {}
-        car_info_ogran = {}
         try:
             text = '''По указанному VIN (номер кузова или шасси) не найдена информация о наложении ограничений на 
             регистрационные действия с транспортным средством.'''
             if text in soup.find('div', id='checkAutoContainer').get_text():
-                car_info_ogran['ogran'] = {'info_ogran': text}
+                car_info_ogran = {'info_ogran': text}
             else:
+                car_info_ogran = {}
+
                 soup_ogran = soup.find('div', id='checkAutoRestricted', class_='checkAutoSection')\
                     .find('ul', class_='restricted-list').find_all('ul', class_='fields-list restrict-data')
 
                 for i, object in enumerate(soup_ogran):
-                    ogran_dict[f'ogran_{i}'] = dict(
+                    car_info_ogran[f'ogran_№_{i}'] = i
+                    car_info_ogran = dict(
                         zip([item.get_text(strip=True).replace('\n', '').replace(' ', '_') for item in
                              object.find_all('span', class_='caption')],
                             [item.get_text(strip=True).replace('\n', '') for item in
                              object.find_all('span', class_='field')]))
 
-                car_info_ogran['ogran'] = ogran_dict
         except Exception as ex:
-            car_info_ogran['ogran'] = {'info_ogran': 'Сервис не работает',
-                                       'error_ogran': str(ex)}
+            car_info_ogran = {'info_ogran': 'Сервис не работает',
+                              'error_ogran': str(ex)}
 
         return dict(**car_info_reg, **car_info_dtp, **car_info_roz, **car_info_ogran)
 
@@ -160,9 +162,7 @@ def pars_site_gibdd(vin, options):  # парсинг сайта ГИБДД, во
 
 def pars_site_bidfax(vin):  # парсинг сайта bidfax, возвращает dict с информацией о машине
     try:  # запуск и проверка сайта на работоспособность
-        browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe")
-        browser.get(f"https://bidfax.info/")
-        browser.set_page_load_timeout(10)
+        browser = get_browser('https://bidfax.info/')
     except Exception as ex:
         car_info_bidfax = {'info_bidfax': 'Сайт не работает',
                            'error_bidfax': str(ex)}
@@ -218,9 +218,7 @@ def pars_site_bidfax(vin):  # парсинг сайта bidfax, возвраща
 
 
 def pars_site_nicb(vin, options):
-    browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options)
-    browser.get(f"https://www.nicb.org/vincheck")
-    browser.set_page_load_timeout(10)
+    browser = get_browser('https://www.nicb.org/vincheck', options)
 
     elem = browser.find_element(By.CLASS_NAME, 'form-control')  # вставляем VIN в строку
     elem.send_keys(vin + Keys.RETURN)
@@ -341,9 +339,7 @@ def pars_site_vinfax(vin):
 
 def pars_site_gost(vin, options):
     try:
-        browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options)
-        browser.get(f'https://easy.gost.ru/')
-        browser.set_page_load_timeout(10)
+        browser = get_browser('https://easy.gost.ru/', options)
     except Exception as ex:
         car_info_gost = {'info_gost': 'Сайт не работает',
                          'error_gost': str(ex)
