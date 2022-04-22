@@ -1,4 +1,4 @@
 {
-    "info_gibdd": "Сайт не работает",
-    "error_gibdd": "Message: \nStacktrace:\nBacktrace:\n\tOrdinal0 [0x00635AD3+2579155]\n\tOrdinal0 [0x005CA3E1+2139105]\n\tOrdinal0 [0x004C40B8+1065144]\n\tOrdinal0 [0x004F06E4+1246948]\n\tOrdinal0 [0x004F08DB+1247451]\n\tOrdinal0 [0x0051C9B2+1427890]\n\tOrdinal0 [0x0050AEC4+1355460]\n\tOrdinal0 [0x0051ADAA+1420714]\n\tOrdinal0 [0x0050AC96+1354902]\n\tOrdinal0 [0x004E5A06+1202694]\n\tOrdinal0 [0x004E68E6+1206502]\n\tGetHandleVerifier [0x007D10D2+1633810]\n\tGetHandleVerifier [0x008905FC+2417468]\n\tGetHandleVerifier [0x006C3E01+531265]\n\tGetHandleVerifier [0x006C2BE6+526630]\n\tOrdinal0 [0x005D034B+2163531]\n\tOrdinal0 [0x005D50F8+2183416]\n\tOrdinal0 [0x005D51E5+2183653]\n\tOrdinal0 [0x005DED7C+2223484]\n\tBaseThreadInitThunk [0x75F3FA29+25]\n\tRtlGetAppContainerNamedObjectPath [0x77A37A7E+286]\n\tRtlGetAppContainerNamedObjectPath [0x77A37A4E+238]\n"
+    "info_reg": "Нет информации",
+    "error_reg": "'NoneType' object has no attribute 'find_all'"
 }

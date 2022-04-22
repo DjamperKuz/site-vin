@@ -5,6 +5,7 @@ import pars_site_gost
 import pars_site_autostat
 import pars_site_costom_belarus
 import pars_site_gibdd_no_api
+from threading import Thread
 from selenium import webdriver
 
 
@@ -32,12 +33,11 @@ vin = 'WP0ZZZ97ZML189000'
 
 
 def main():
-    # pars_site_gibdd_no_api.main_gibdd()
-    # pars_site_costom_belarus.main_customs()
-    # pars_site_bidfax.main_bidfax()
-    # pars_site_autostat.main_autostat()
-    # pars_site_gost.main_gost()
-    pass
+    Thread(target=pars_site_bidfax.main_bidfax).start()
+    Thread(target=pars_site_autostat.main_autostat).start()
+    Thread(target=pars_site_gibdd_no_api.main_gibdd).start()
+    Thread(target=pars_site_gost.main_gost).start()
+    Thread(target=pars_site_costom_belarus.main_customs).start()
 
 
 if __name__ == "__main__":
