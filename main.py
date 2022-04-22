@@ -2,6 +2,8 @@
 import time
 import lxml
 import json
+
+import requests
 import undetected_chromedriver
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -10,6 +12,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.window import WindowTypes
 from selenium.webdriver.support import expected_conditions as EC
 
 
@@ -86,12 +89,6 @@ def pars_site_gibdd(vin, options):  # парсинг сайта ГИБДД, во
                 soup_dtp = soup.find('div', id='checkAutoAiusdtp', class_='checkAutoSection')\
                                     .find('ul', class_='aiusdtp-list').find_all('ul', class_='fields-list aiusdtp-data')
 
-                # soup_dtp_number = soup.find('div', id='checkAutoAiusdtp',
-                #                            class_='checkAutoSection').find_all('p', class_='ul-title')
-
-                # for i, number in enumerate(soup_dtp_number):
-                #    car_info_dtp[f'dtp_№_{i}'] = number.get_text()
-
                 for i, object in enumerate(soup_dtp):
                     car_info_dtp[f'dtp_№_{i}'] = i
                     car_info_dtp = dict(
@@ -160,12 +157,36 @@ def pars_site_gibdd(vin, options):  # парсинг сайта ГИБДД, во
     return get_content(pagesource_gibdd)  # работает, добавить периоды владения
 
 
+def site_gibdd_api(vin):
+    checks = {
+        "history": "history",
+        "dtp": "aiusdtp",
+        "wanted": "wanted",
+        "restrict": "restricted",
+        "diagnostic": "diagnostic"
+    }
+    for link in list(checks.keys()):
+        url = f"https://xn--blafk4ade.xn--90adear.xn--plai/proxy/check/auto/{link}"
+
+        data = {
+            "vin": vin,
+            "checkType": checks[link]
+        }
+        try:
+            r = requests.post(url, data=data)
+            print(json.loads(r.text))
+        except Exception as ex:
+            print(ex)
+
+
 def pars_site_bidfax(vin):  # парсинг сайта bidfax, возвращает dict с информацией о машине
     try:  # запуск и проверка сайта на работоспособность
         browser = get_browser('https://bidfax.info/')
     except Exception as ex:
-        car_info_bidfax = {'info_bidfax': 'Сайт не работает',
-                           'error_bidfax': str(ex)}
+        car_info_bidfax = {
+            'success': 'False',
+            'info_bidfax': 'Сайт не работает'
+        }
         return car_info_bidfax
 
     elem = browser.find_element(By.ID, 'search')  # вставляем VIN в строку
@@ -178,9 +199,10 @@ def pars_site_bidfax(vin):  # парсинг сайта bidfax, возвраща
                                                                          "fotorama__arr.fotorama__arr--next"))).click()
         time.sleep(5)
     except Exception as ex:
-        car_info_bidfax = {'info_bidfax': 'Нет информации',
-                           'error_bidfax': str(ex)
-                           }
+        car_info_bidfax = {
+            'success': 'False',
+            'info_bidfax': 'Нет информации о машине'
+        }
         return car_info_bidfax
 
     pagesource_bidfax = browser.page_source  # сохранение html кода страницы
@@ -194,23 +216,28 @@ def pars_site_bidfax(vin):  # парсинг сайта bidfax, возвраща
         car_info = soup.find('div', class_='col-md-3 full-right')
 
         # сбор информации о машине
-        car_info_bidfax = dict(zip([
-            'lot_number_bidfax', 'date_of_sale_bidfax', 'year_of_release_bidfax', 'VIN_bidfax',
-            'status_bidfax', 'engine_bidfax', 'mileage_bidfax',
-            'seller_bidfax', 'documents_bidfax', 'place_of_sale_bidfax', 'primary_damage_bidfax',
-            'secondary_damage_bidfax',
-            'est._retail_value_dollars_bidfax', 'repair_price_dollars_bidfax', 'transmission_bidfax',
-            'color_bidfax', 'drive_bidfax', 'fuel_bidfax', 'keys_bidfax', 'notes_bidfax'],
+        car_info = dict(zip([
+            'lot_number', 'date_of_sale', 'year_of_release', 'VIN',
+            'status', 'engine', 'mileage',
+            'seller', 'documents', 'place_of_sale', 'primary_damage',
+            'secondary_damage',
+            'est._retail_value_dollars', 'repair_price_dollars', 'transmission',
+            'color', 'drive', 'fuel', 'keys', 'notes'],
             [item.get_text(strip=True) for item in car_info.find_all("span", class_="blackfont")]))
         try:
-            car_info_bidfax['auction_bidfax'] = soup.find('span', class_='copart').get_text(strip=True)
+            car_info['auction_bidfax'] = soup.find('span', class_='copart').get_text(strip=True)
         except:
-            car_info_bidfax['auction_bidfax'] = soup.find('span', class_='iaai').get_text(strip=True)
+            car_info['auction_bidfax'] = soup.find('span', class_='iaai').get_text(strip=True)
 
         # сбор фотографий
         photo = ['https://bidfax.info/' + item.get('src') for item in car_photo.find_all('img')]
         for i in range(1, len(photo) + 1):
-            car_info_bidfax[f'car_photo_number_{i}'] = photo[i - 1]
+            car_info[f'car_photo_number_{i}'] = photo[i - 1]
+
+        car_info_bidfax = {
+            'success': 'True',
+            **car_info
+        }
 
         return car_info_bidfax
 
@@ -224,9 +251,8 @@ def pars_site_nicb(vin, options):
     elem.send_keys(vin + Keys.RETURN)
 
     WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.NAME, "agree_terms"))).click()
-    browser.find_element(By.ID, 'vincheck-recaptcha').find_element_by_tag_name('iframe').click()
 
-    time.sleep(300)  # КАПЧА, не работает
+    time.sleep(30)  # КАПЧА, не работает
 
 
 def pars_site_autoastat(vin, options):
@@ -242,9 +268,10 @@ def pars_site_autoastat(vin, options):
         browser.get(f'https://autoastat.com/en/')
         browser.set_page_load_timeout(10)
     except Exception as ex:
-        car_info_autoastat = {'info_autoastat': 'Сайт не работает',
-                              'error_autoastat': str(ex)
-                              }
+        car_info_autoastat = {
+            'success': 'False',
+            'info_autoastat': 'Сайт не работает'
+        }
         return car_info_autoastat
 
     try:
@@ -262,9 +289,10 @@ def pars_site_autoastat(vin, options):
         elem = browser.find_element(By.ID, 'search_lot_by_identifier_form_field')  # вставляем VIN в строку
         elem.send_keys(vin + Keys.RETURN)
     except Exception as ex:
-        car_info_autoastat = {'info_autoastat': 'Сайт не работает',
-                              'error_autoastat': str(ex)
-                              }
+        car_info_autoastat = {
+            'success': 'False',
+            'info_autoastat': 'Сайт не работает'
+        }
         return car_info_autoastat
 
     pagesource_autoastat = browser.page_source  # сохранение html кода страницы
@@ -278,32 +306,36 @@ def pars_site_autoastat(vin, options):
             car_left_data = [item.get_text(strip=True).replace('\n', '').replace(' ', '')
                              for item in soup.find('div', class_='card-vehicle').find_all('dd')]
 
-            car_left_name = [item.get_text(strip=True).replace(' ', '_').replace(':', '') + '_autoastat'
+            car_left_name = [item.get_text(strip=True).replace(' ', '_').replace(':', '')
                              for item in soup.find('div', class_='card-vehicle').find_all('dt')]
 
             car_mid_data = [item.get_text(strip=True).replace(' ', '_').replace(':', '')
                             for item in soup.find('div', class_='card full-height').find_all('dd')]
 
-            car_mid_name = [item.get_text(strip=True).replace(' ', '_').replace(':', '') + '_autoastat'
+            car_mid_name = [item.get_text(strip=True).replace(' ', '_').replace(':', '')
                             for item in soup.find('div', class_='card full-height').find_all('dt')]
 
             car_right_data = [item.get_text(strip=True).replace(' ', '_').replace(':', '')
                               for item in soup.find('div', class_='card auction-card full-height').find_all('dd')]
 
-            car_right_name = [item.get_text(strip=True).replace(' ', '_').replace(':', '') + '_autoastat'
+            car_right_name = [item.get_text(strip=True).replace(' ', '_').replace(':', '')
                               for item in soup.find('div', class_='card auction-card full-height').find_all('dt')]
 
-            car_info_autoastat = {**dict(zip(car_left_name, car_left_data)),
-                                  **dict(zip(car_mid_name, car_mid_data)),
-                                  **dict(zip(car_right_name, car_right_data))
-                                  }
+            car_info_autoastat = {
+                'success': 'True',
+                **dict(zip(car_left_name, car_left_data)),
+                **dict(zip(car_mid_name, car_mid_data)),
+                **dict(zip(car_right_name, car_right_data))
+            }
 
             return car_info_autoastat
 
         except Exception as ex:
-            car_info_autoastat = {'info_autoastat': 'Нет информации',
-                                  'error_autoastat': str(ex)
-                                  }
+            car_info_autoastat = {
+                'success': 'False',
+                'info_autoastat': 'Нет информации'
+            }
+
             return car_info_autoastat
 
     return get_content(pagesource_autoastat)  # работает
@@ -341,9 +373,10 @@ def pars_site_gost(vin, options):
     try:
         browser = get_browser('https://easy.gost.ru/', options)
     except Exception as ex:
-        car_info_gost = {'info_gost': 'Сайт не работает',
-                         'error_gost': str(ex)
-                         }
+        car_info_gost = {
+            'success': 'False',
+            'info_gost': 'Сайт не работает',
+        }
         return car_info_gost
 
     try:
@@ -351,9 +384,10 @@ def pars_site_gost(vin, options):
         elem = browser.find_element(By.ID, 'findVin')  # вставляем VIN в строку
         elem.send_keys(vin + Keys.RETURN)
     except Exception as ex:
-        car_info_gost = {'info_gost': 'Сайт не работает',
-                         'error_gost': str(ex)
-                         }
+        car_info_gost = {
+            'success': 'False',
+            'info_gost': 'Сайт не работает',
+        }
         return car_info_gost
 
     time.sleep(2)
@@ -365,34 +399,92 @@ def pars_site_gost(vin, options):
         try:
             soup = BeautifulSoup(source, "lxml")
 
-            car_info_gost = dict(zip([
-                'condition_gost', 'VIN_gost', 'revocable_company_gost', 'organizer_revocable_gost',
-                'stamp', 'name_vehicle_gost', 'reasons_recall_gost', 'works_recommendations_gost'],
+            car_info = dict(zip([
+                'condition', 'VIN', 'revocable_company', 'organizer_revocable',
+                'stamp', 'name_vehicle', 'reasons_recall', 'works_recommendations'],
                 [item for i, item in enumerate(soup.find('div', class_='div-revocamp').
                                                stripped_strings, 1) if i % 2 == 1]))
+            car_info_gost = {'success': 'True', **car_info}
         except Exception as ex:
-            car_info_gost = {'info_gost': 'Не найден среди отзывных кампаний',
-                             'error_gost': str(ex)
-                             }
-            return car_info_gost
+            car_info_gost = {
+                'success': 'True',
+                'info_gost': 'Не найден среди отзывных кампаний',
+            }
 
         return car_info_gost
 
     return get_content(pagesource_gost)  # работает
 
 
-def pars_site_mvdgov(options):
-    proxy_options = {
-        'proxy': {
-            'https': 'http://NiVprTat:GE5KUKUF@45.138.159.160:45150'
-        }
-    }
-    browser = wier_webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options,
-                                    seleniumwire_options=proxy_options)
-    browser.get(f'https://www.reg.ru/web-tools/myip')
-    browser.set_page_load_timeout(10)
-    time.sleep(100)  # нужно белорусское прокси
+def pars_site_customs_belarus(vin, options):
+    options.add_extension(r"C:\VIN\chromedriver\extension_2_5_1_0.crx")
+    options.add_argument(r"--user-data-dir=C:\Users\tomas\AppData\Local\Google\Chrome\User Data\Default")
+    browser = get_browser('https://www.customs.gov.by/baza-dannykh-vvezyennogo-avtotransporta/'
+                          'index.php?sphrase_id=157722', options=options)
+    time.sleep(20)
 
+    try:
+        WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.CLASS_NAME, "filter")))
+        elem = browser.find_elements(By.NAME, 'query')
+        for item in range(len(elem)):
+            elem[item].send_keys(vin + Keys.RETURN)
+            time.sleep(5)
+    except:
+        car_info_customs = {
+            'success': 'False',
+            'info_customs': 'Сайт не работает'
+        }
+        return car_info_customs
+
+    pagesource_customs = browser.page_source  # сохранение html кода страницы
+    browser.close()
+    browser.quit()
+
+    def get_content(source):
+        soup = BeautifulSoup(source, "lxml")
+
+        text = "Ничего не найдено"
+        try:
+            if text in soup.find('div', class_='db_table1').get_text():
+                check_table1 = True
+                car_info_table1 = {}
+            else:
+                check_table1 = False
+                soup_table1 = soup.find('div', class_='db_table1')
+                car_info_table1 = dict(zip([item.get_text(strip=True).replace('\n', '').replace(' ', '_')
+                                for item in soup_table1.find_all('th')],
+                                [item.get_text(strip=True).replace('\n', '') for item in soup_table1.find_all('td')]))
+
+            if text in soup.find('div', class_='db_table2').get_text():
+                check_table2 = True
+                car_info_table2 = {}
+            else:
+                check_table2 = False
+                soup_table2 = soup.find('div', class_='db_table2')
+                car_info_table2 = dict(zip([item.get_text(strip=True).replace('\n', '').replace(' ', '_')
+                                for item in soup_table2.find_all('th')],
+                                [item.get_text(strip=True).replace('\n', '') for item in soup_table2.find_all('td')]))
+
+            if (check_table1 == True) and (check_table2 == True):
+                car_info_customs = {
+                    'success': 'True',
+                    'info_customs': 'Ничего не найдено'
+                }
+            else:
+                car_info_customs = {
+                    'success': 'True',
+                    **car_info_table1,
+                    **car_info_table2
+                }
+        except Exception as ex:
+            car_info_customs = {
+                'success': 'False',
+                'info_customs': 'Сайт не работает'
+            }
+
+        return car_info_customs
+
+    return get_content(pagesource_customs)
 
 def main():
     # подключение опций для браузера
@@ -402,19 +494,21 @@ def main():
     options.add_argument("""user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
                         (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36""")
 
-    vin = '5YJ3E1EA1KF407691'
+    vin = 'WP0ZZZ97ZML189042'
+    '''
+    with open(r"data/data_customs_belarus.json", 'w', encoding="utf-8") as outfile:
+        json.dump(pars_site_customs_belarus(vin, options), outfile, separators=(',', ': '), indent=4, ensure_ascii=False)
 
-    # сохранение информации с сайтов в json-файлы
-    with open(r"data_gibdd.json", 'w', encoding="utf-8") as outfile:
+    with open(r"data/data_gibdd.json", 'w', encoding="utf-8") as outfile:
         json.dump(pars_site_gibdd(vin, options), outfile, separators=(',', ': '), indent=4, ensure_ascii=False)
-
-    with open(r"data_bidfax.json", 'w') as outfile:
+    
+    with open(r"data/data_bidfax.json", 'w') as outfile:
         json.dump(pars_site_bidfax(vin), outfile, separators=(',', ': '), indent=4, ensure_ascii=False)
-
-    with open(r"data_gost.json", 'w') as outfile:
+    '''
+    with open(r"data/data_gost.json", 'w') as outfile:
         json.dump(pars_site_gost(vin, options), outfile, separators=(',', ': '), indent=4, ensure_ascii=False)
 
-    with open(r"data_autoastat.json", 'w') as outfile:
+    with open(r"data/data_autoastat.json", 'w') as outfile:
         json.dump(pars_site_autoastat(vin, options), outfile, separators=(',', ': '), indent=4, ensure_ascii=False)
 
 
