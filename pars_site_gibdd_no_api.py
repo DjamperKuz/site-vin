@@ -7,7 +7,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def pars_site_gibdd(vin, options):  # парсинг сайта ГИБДД, возвращает dict с информацией о машине
+def pars_site_gibdd(vin):  # парсинг сайта ГИБДД, возвращает dict с информацией о машине
+    options = main.webdriver.ChromeOptions()
+    options.add_argument("--mute-audio")  # отключение звука
+    options.add_argument("--headless")  # включение фонового режима работы браузера
     try:  # запуск и проверка сайта на работоспособность
         browser = main.get_browser('https://xn--90adear.xn--p1ai/check/auto', options)
     except Exception as ex:
@@ -136,7 +139,7 @@ def pars_site_gibdd(vin, options):  # парсинг сайта ГИБДД, во
 
 
 def main_gibdd():
-    main.save_json(pars_site_gibdd(main.vin, main.get_options()), 'data_gibdd_no_api')
+    main.save_json(pars_site_gibdd(main.vin), 'data_gibdd_no_api')
 
 
 if __name__ == "main":

@@ -7,7 +7,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def pars_site_gost(vin, options):
+def pars_site_gost(vin):
+    options = main.webdriver.ChromeOptions()
+    options.add_argument("--headless")  # включение фонового режима работы браузера
     try:
         browser = main.get_browser('https://easy.gost.ru/', options)
     except Exception as ex:
@@ -55,7 +57,7 @@ def pars_site_gost(vin, options):
 
 
 def main_gost():
-    main.save_json(pars_site_gost(main.vin, main.get_options()), 'data_gost')
+    main.save_json(pars_site_gost(main.vin), 'data_gost')
 
 
 if __name__ == "__main__":

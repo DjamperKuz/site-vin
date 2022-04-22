@@ -7,7 +7,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def pars_site_customs_belarus(vin, options):
+def pars_site_customs_belarus(vin):
+    options = main.webdriver.ChromeOptions()
     options.add_extension(r"C:\VIN\chromedriver\extension_2_5_1_0.crx")
     options.add_argument(r"--user-data-dir=C:\Users\tomas\AppData\Local\Google\Chrome\User Data\Default")
     browser = main.get_browser('https://www.customs.gov.by/baza-dannykh-vvezyennogo-avtotransporta/'
@@ -79,7 +80,7 @@ def pars_site_customs_belarus(vin, options):
 
 
 def main_customs():
-    main.save_json(pars_site_customs_belarus(main.vin, main.get_options()), 'data_customs_belarus')
+    main.save_json(pars_site_customs_belarus(main.vin), 'data_customs_belarus')
 
 
 if __name__ == "main":
