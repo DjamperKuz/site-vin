@@ -27,11 +27,11 @@ def get_options():
 
 
 def save_json(dict_json, name_file):
-    with open(f"data/{name_file}.json", 'w') as outfile:
+    with open(f"data/{name_file}.json", 'w', encoding="utf-8") as outfile:
         json.dump(dict_json, outfile, separators=(',', ': '), indent=4, ensure_ascii=False)
 
 
-vin = '5YJ3E1EA1KF407691'
+vin = 'MBHHFD31S00161054'
 
 
 def main():

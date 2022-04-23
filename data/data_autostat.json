@@ -1,22 +1,4 @@
 {
-    "success": "True",
-    "Odometer": "23851miA",
-    "Engine": "Unknown",
-    "Fuel": "Electric",
-    "Drive_line": "Rearwheeldrive",
-    "Transmission": "Automatic",
-    "Color": "White",
-    "Trim": "MidRange",
-    "Loss": "Unknown",
-    "Damage": "Side",
-    "Run_and_Drive": "No",
-    "Starts": "Won't_start",
-    "Keys": "Yes",
-    "Date": "24/03/2022",
-    "Location": "New_Braunfels",
-    "Buyer_country": "Upgrade_plan",
-    "SaleDoc": "TX_-_Certificate_of_title",
-    "Who_can_bid": "All",
-    "Sale_status": "Min_bid",
-    "Min_bid_met": "No"
+    "success": "False",
+    "info_autoastat": "Сайт не работает"
 }
