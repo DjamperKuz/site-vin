@@ -18,7 +18,7 @@ def pars_site_autoastat(vin):
         browser = wier_webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe",
                                         seleniumwire_options=proxy_options)
         browser.get(f'https://autoastat.com/en/')
-        browser.set_page_load_timeout(10)
+        browser.set_page_load_timeout(20)
     except Exception as ex:
         car_info_autoastat = {
             'success': 'False',
@@ -28,7 +28,7 @@ def pars_site_autoastat(vin):
 
     try:
         # клик на авторизацию
-        WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.CLASS_NAME,
+        WebDriverWait(browser, 20).until(EC.element_to_be_clickable((By.CLASS_NAME,
                                                                      'btn.btn-secondary.btn_mobile-unstyled'))).click()
         # авторизация на сайте
         username = browser.find_element(By.ID, '_username')
@@ -36,7 +36,7 @@ def pars_site_autoastat(vin):
         username.send_keys('tomaslex@mail.ru')
         password.send_keys('Lz_ZYB4-Xqfj4uP')
 
-        WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn.btn-primary.btn-sm'))).click()
+        WebDriverWait(browser, 20).until(EC.element_to_be_clickable((By.CLASS_NAME, 'btn.btn-primary.btn-sm'))).click()
 
         elem = browser.find_element(By.ID, 'search_lot_by_identifier_form_field')  # вставляем VIN в строку
         elem.send_keys(vin + Keys.RETURN)
