@@ -142,5 +142,5 @@ def main_gibdd():
     main.save_json(pars_site_gibdd(main.vin), 'data_gibdd_no_api')
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     main_gibdd()

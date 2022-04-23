@@ -97,5 +97,5 @@ def main_autostat():
     main.save_json(pars_site_autoastat(main.vin), 'data_autostat')
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     main_autostat()

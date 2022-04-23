@@ -1,4 +1,6 @@
 {
     "info_reg": "Нет информации",
-    "error_reg": "'NoneType' object has no attribute 'find_all'"
+    "error_reg": "'NoneType' object has no attribute 'find_all'",
+    "info_dtp": "В результате обработки запроса к АИУС ГИБДД записи о дорожно-транспортных происшествиях не найдены.",
+    "info_roz": "По указанному VIN (номер кузова или шасси) не найдена информация о розыске транспортного средства."
 }

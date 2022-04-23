@@ -8,6 +8,8 @@ import pars_site_gibdd_no_api
 from threading import Thread
 from selenium import webdriver
 
+import pars_site_vinfax
+
 
 def get_browser(url, options=None):
     browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options)
@@ -29,7 +31,7 @@ def save_json(dict_json, name_file):
         json.dump(dict_json, outfile, separators=(',', ': '), indent=4, ensure_ascii=False)
 
 
-vin = 'WP0ZZZ97ZML189000'
+vin = '5YJ3E1EA1KF407691'
 
 
 def main():
@@ -37,7 +39,8 @@ def main():
     Thread(target=pars_site_autostat.main_autostat).start()
     Thread(target=pars_site_gibdd_no_api.main_gibdd).start()
     Thread(target=pars_site_gost.main_gost).start()
-    Thread(target=pars_site_costom_belarus.main_customs).start()
+    # Thread(target=pars_site_costom_belarus.main_customs).start()
+    Thread(target=pars_site_vinfax.main_vinfax).start()
 
 
 if __name__ == "__main__":

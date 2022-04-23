@@ -83,5 +83,5 @@ def main_customs():
     main.save_json(pars_site_customs_belarus(main.vin), 'data_customs_belarus')
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     main_customs()

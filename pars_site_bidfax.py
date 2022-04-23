@@ -76,5 +76,5 @@ def main_bidfax():
     main.save_json(pars_site_bidfax(main.vin), 'data_bidfax')
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     main_bidfax()
