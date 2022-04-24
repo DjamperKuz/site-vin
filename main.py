@@ -1,6 +1,7 @@
 """Проект: сайт с поиском автомобильных номеров"""
 import json
 import pars_site_bidfax
+import pars_site_fed_resource
 import pars_site_gost
 import pars_site_autostat
 import pars_site_costom_belarus
@@ -36,12 +37,12 @@ vin = 'MBHHFD31S00161054'
 
 def main():
     Thread(target=pars_site_bidfax.main_bidfax).start()
-    Thread(target=pars_site_autostat.main_autostat).start()
-    Thread(target=pars_site_gibdd_no_api.main_gibdd).start()
-    Thread(target=pars_site_gost.main_gost).start()
+    # Thread(target=pars_site_autostat.main_autostat).start()
+    # Thread(target=pars_site_gibdd_no_api.main_gibdd).start()
+    # Thread(target=pars_site_gost.main_gost).start()
     # Thread(target=pars_site_costom_belarus.main_customs).start()
-    Thread(target=pars_site_vinfax.main_vinfax).start()
-
+    # Thread(target=pars_site_vinfax.main_vinfax).start()
+    Thread(target=pars_site_fed_resource.main_fed_res).start()
 
 if __name__ == "__main__":
     main()
