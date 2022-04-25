@@ -6,10 +6,9 @@ import pars_site_gost
 import pars_site_autostat
 import pars_site_costom_belarus
 import pars_site_gibdd_no_api
+import pars_site_vinfax
 from threading import Thread
 from selenium import webdriver
-
-import pars_site_vinfax
 
 
 def get_browser(url, options=None):
@@ -44,6 +43,6 @@ def main():
     # Thread(target=pars_site_vinfax.main_vinfax).start()
     Thread(target=pars_site_fed_resource.main_fed_res).start()
 
+
 if __name__ == "__main__":
     main()
-
