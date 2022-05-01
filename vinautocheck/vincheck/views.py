@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def main_search(request):
+    return render(request, 'vincheck/main_search.html')
