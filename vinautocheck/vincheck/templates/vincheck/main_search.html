@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="глав_поисковик.css">
+    <link rel="stylesheet" href="{% static 'vincheck/css/глав_поисковик.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -27,7 +28,7 @@
             <div class="main_containernarrow">
                 <div class="main_content">
                     <div class="main_image">
-                        <img src="img/VIN.png" alt="">
+                        <img src="{% static 'vincheck/images/VIN.png' %}" alt="">
                     </div>
                     <div class="main_form">
                         <form class="vin">
