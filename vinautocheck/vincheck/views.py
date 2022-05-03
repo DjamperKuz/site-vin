@@ -11,3 +11,7 @@ def signin(request):
 
 def tovar(request):
     return render(request, 'vincheck/tovar.html')
+
+
+def avtorizovan(request):
+    return render(request, 'vincheck/avtorizovan.html')

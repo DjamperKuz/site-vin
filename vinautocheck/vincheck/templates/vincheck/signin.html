@@ -30,7 +30,7 @@
       <input type="password" class = "form_input" placeholder="Пароль">
     </p>
     <p>
-      <a href="avtorizovan.html" button class="form_btn">Войти</button></a>
+      <a href="{% url 'avtorizovan' %}" button class="form_btn">Войти</button></a>
     </p>
     <p>
       <a href="forgotform.html" class="form_forgot">Восстановить пароль </a>
@@ -53,7 +53,7 @@
       <input type="password" class="form_input" placeholder="Подтвердите пароль">
     </p>
     <p>
-      <a href="avtorizovan.html" button class="form_btn form_btn_signup"> Зарегистрироваться </button></a>
+      <a href="{% url 'avtorizovan' %}" button class="form_btn form_btn_signup"> Зарегистрироваться </button></a>
     </p>
   </form>
 
