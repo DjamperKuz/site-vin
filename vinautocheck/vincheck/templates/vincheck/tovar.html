@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<head>
+  <meta charset = "utf-8">
+  <title>Наши тарифы</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="wrapper">
+<header>
+  <div class="header_container">
+    <div class="header_content">
+        <h1>Наши тарифы</h1>
+    </div>
+  </div>
+</header>
+<div class="pricing_container">
+  <div class="pricing-table">
+    <div class="col">
+      <div class="table">
+        <h2>Выбор пользователей</h2>
+        <div class="price">
+          10 BYN
+        </div>
+        <ul>
+          <li>Офлайн отчёт</li>
+          <li>Вся онлайн информация</li>
+          <li>Отчёту более 30 дней</li>
+        </ul>
+        <a href="форма_оплаты.html"> Купить </a>
+      </div>
+
+    </div>
+    <div class="col">
+      <div class="table">
+        <h2>Оптимальный выбор</h2>
+        <div class="pop">Популярное</div>
+        <div class="price">
+          20 BYN
+        </div>
+        <ul>
+          <li>Офлайн отчёт</li>
+          <li>Вся онлайн информация</li>
+          <li> Более 15, но менее 30 дней</li>
+        </ul>
+        <a href="форма_оплаты.html"> Купить </a>
+      </div>
+
+
+    </div>
+    <div class="col">
+      <div class="table">
+        <h2>Лучшее предложение</h2>
+        <div class="price">
+          30 BYN
+        </div>
+        <ul>
+          <li>Офлайн отчёт</li>
+          <li>Вся онлайн информация</li>
+          <li>Отчёту менее 15 дней</li>
+        </ul>
+        <a href="форма_оплаты.html"> Купить </a>
+      </div>
+
+    </div>
+    <div class="col">
+      <div class="table">
+        <h2>Специальное предложение</h2>
+        <div class="price">
+          10 BYN
+        </div>
+        <ul>
+          <li>Онлайн отчёт</li>
+          <li>Отсутствие офлайн отчёта</li>
+          <li> Более 15, но менее 30 дней</li>
+        </ul>
+        <a href="форма_оплаты.html"> Купить </a>
+      </div>
+
+    </div>
+
+</div>
+
+</div>
+</div>
+
+</body>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ddeefc;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+}
+
+header {
+  margin: auto;
+}
+
+
+.wrapper{
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.header_content h1 {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "montserrat",sans-serif;
+}
+
+.pricing-table{
+  /*max-width: 1200px;*/
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+
+}
+
+.col{
+ flex:25%;
+ padding: 10px;
+ max-width: 320px;
+ box-sizing: border-box;
+ transition: transform 0.5s;
+
+}
+
+.table{
+  background: #fff;
+  padding: 40px 20px;
+  font-family: "montserrat",sans-serif;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px #00000070;
+}
+.table h2{
+  text-transform: uppercase;
+}
+
+.table ul{
+  margin: 0;
+  padding: 0;
+}
+
+.table ul li{
+  padding: 10px 0;
+  list-style: none;
+}
+
+.price{
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.table a{
+  text-decoration: none;
+  color: #6495ED;
+  border: 2px solid #6495ED;
+  display: block;
+  padding: 10px 0;
+  margin: 10px 0;
+  border-radius: 40px;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: 0.5s linear;
+}
+
+.table a:hover{
+  background: #6495ED;
+  color: #fff;
+}
+
+.col:hover{
+  transform: scale(1.1);
+}
+
+.pop{
+  background: #DC143C;
+  color:#fff;
+  transform: rotate(45deg);
+  padding: 10px 40px;
+  position: absolute;
+  top: 24px;
+  right: -51px;
+}
+
+@media  screen and (max-width:980px) {
+  .col{
+    flex:50%;
+  }
+}
+
+@media  screen and (max-width:700px) {
+  .col{
+    flex:100%;
+  }
+}
+@media (max-width: 992px){
+  .col{
+    flex:100%;
+  }
+}
+
+</style>
+</html>

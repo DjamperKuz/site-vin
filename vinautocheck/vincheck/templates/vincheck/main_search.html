@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'vincheck/css/глав_поисковик.css' %}">
+    <link rel="stylesheet" href="{% static 'vincheck/css/style1.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -20,7 +20,7 @@
         <header>
             <div class="header_container">
                 <div class="header_content">
-                    <a href="" class="button_login">Войти</a>
+                    <a href="{% url 'signin' %}" class="button_login">Войти</a>
                 </div>
             </div>
         </header>
@@ -38,7 +38,7 @@
                             <div class="window"
                                 data-tooltip="VIN-код - это уникальный код транспортного средства, состоящий из 17 знаков">
                                 <input type="submit" value="?" class="first_button"></div>
-                            <input type="submit" value="Проверить" class="second_button">
+                                <a href = "{% url 'tovar' %}" class="second_button"> Проверить </a>
                         </form>
                     </div>
                 </div>

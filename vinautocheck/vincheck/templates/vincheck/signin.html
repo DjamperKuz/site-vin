@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset = "utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0 ">
+  <title> Авторизация </title>
+</head>
+<body>
+<article class="container">
+  <div class="block">
+    <section class="block_item block-item">
+      <h2 class="block-item_title">У вас уже есть аккаунт?</h2>
+      <button class="block-item_btn signin-btn">Войти</button>
+    </section>
+    <section class="block_item block-item">
+      <h2 class="block-item_title">У вас нет аккаунта?</h2>
+      <button class="block-item_btn signup-btn">Зарегистрироваться</button>
+    </section>
+  </div>
+
+<div class="form-box">
+  <form action="#" class="form form_signin">
+    <h3 class="form_title">Вход</h3>
+    <p>
+      <input type="text" class = "form_input" placeholder="Логин">
+    </p>
+    <p>
+      <input type="password" class = "form_input" placeholder="Пароль">
+    </p>
+    <p>
+      <a href="avtorizovan.html" button class="form_btn">Войти</button></a>
+    </p>
+    <p>
+      <a href="forgotform.html" class="form_forgot">Восстановить пароль </a>
+    </p>
+  </form>
+
+  <form action="#" class="form form_signup">
+    <h3 class="form_title"> Регистрация</h3>
+
+    <p>
+      <input type="text" class="form_input" placeholder="Логин">
+    </p>
+    <p>
+      <input type="email" class="form_input" placeholder="Email">
+    </p>
+    <p>
+      <input type="password" class="form_input" placeholder="Пароль">
+    </p>
+    <p>
+      <input type="password" class="form_input" placeholder="Подтвердите пароль">
+    </p>
+    <p>
+      <a href="avtorizovan.html" button class="form_btn form_btn_signup"> Зарегистрироваться </button></a>
+    </p>
+  </form>
+
+</div>
+</article>
+</body>
+<style>
+*{
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #ddeefc; /*#6495ED; /*#03a9f4;*/
+  transition: 0.5s;
+}
+
+body.active{
+  background-color: #f43648;
+}
+
+.container{
+  width: 800px;
+  height: 500px;
+  padding: 40px 0;
+  position: relative;
+
+}
+
+.block{
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  align-items: center;
+}
+.block_item{
+  width: 50%;
+}
+
+
+.block-item{
+  text-align: center;
+}
+
+.block-item_title{
+  font-size: 1.2rem;
+  font-weight: 500;
+  color:black;
+  margin-bottom: 10px;
+}
+
+.block-item_btn{
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: white;
+  color:#333;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
+.form-box{
+  background-color: white;
+  height: 100%;
+  width: 50%;
+  box-shadow: 0 5px 45px rgba(0, 0, 0, 0.25);
+
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: 1000;
+  transition: 0.5s ease-in-out;
+
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.form-box.active{
+  left: 50%;
+}
+
+.form{
+  width: 100%;
+  padding: 50px;
+  font-size: 16px;
+
+  position: absolute;
+  transition: 0.5s;
+}
+
+.form_signin{
+  left:0;
+  transition-delay: 0.25s;
+}
+
+.form_signup{
+  left:100%;
+  transition-delay: 0s;
+}
+
+.form-box.active .form_signin{
+  left: -100%;
+  transition-delay: 0s;
+}
+
+.form-box.active .form_signup{
+  left: 0;
+  transition-delay: 0.25s;
+}
+
+.form_title{
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form_input{
+  width: 100%;
+  padding: 10px;
+  border: solid 1px #333;
+  font-size: inherit;
+}
+
+.form_btn{
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  background-color:#6495ED; /*#03a9f4;*/
+  color: white;
+  padding: 10px 50px;
+}
+
+.form_btn_signup{
+  background-color: #f43648;
+}
+
+.form_forgot{
+  color: #333;
+}
+
+@media (max-width: 992px) {
+  .container{
+    max-width: 400px;
+    height: 650px;
+    padding: 0;
+    margin: 0 20px;
+  }
+
+  .block{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .block_item{
+    width: 100%;
+    padding: 30px 0;
+  }
+
+  .form-box{
+    width: 100%;
+    height: 500px;
+    box-shadow: none;
+
+    top:0;
+  }
+
+  .form-box.active{
+    top: 150px;
+    left:0;
+  }
+}
+</style>
+</html>
+<script type="text/javascript">
+const signInBtn = document.querySelector('.signin-btn');
+const signUpBtn = document.querySelector('.signup-btn');
+const formBox = document.querySelector('.form-box');
+const body = document.body;
+
+signUpBtn.addEventListener('click',function(){
+  formBox.classList.add('active');
+  body.classList.add('active');
+});
+
+signInBtn.addEventListener('click',function(){
+  formBox.classList.remove('active');
+  body.classList.remove('active');
+});
+</script>
