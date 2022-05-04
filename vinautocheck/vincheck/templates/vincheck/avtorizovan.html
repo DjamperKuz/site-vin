@@ -28,7 +28,7 @@
             <div class="main_containernarrow">
                 <div class="main_content">
                     <div class="main_image">
-                        <img src="img/VIN.png" alt="">
+                        <img src="{% static 'vincheck/images/VIN.png' %}" alt="">
                     </div>
                     <div class="main_form">
                         <form class="vin">
@@ -38,7 +38,7 @@
                             <div class="window"
                                 data-tooltip="VIN-код - это уникальный код транспортного средства, состоящий из 17 знаков">
                                 <input type="submit" value="?" class="first_button"></div>
-                            <a href = "tovar.html" class="second_button"> Проверить </a>
+                            <a href = "{% url 'tovar' %}" class="second_button"> Проверить </a>
                         </form>
                     </div>
                 </div>
