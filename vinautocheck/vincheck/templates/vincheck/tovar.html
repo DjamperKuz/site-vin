@@ -1,119 +1,170 @@
+{% load static %}
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset = "utf-8">
-  <title>Наши тарифы</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка VIN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Montserrat:wght@400;600;700&family=Roboto&family=Rubik:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
 <body>
-<div class="wrapper">
-<header>
-  <div class="header_container">
-    <div class="header_content">
-        <h1>Наши тарифы</h1>
-    </div>
-  </div>
-</header>
-<div class="pricing_container">
-  <div class="pricing-table">
-    <div class="col">
-      <div class="table">
-        <h2>Выбор пользователей</h2>
-        <div class="price">
-          10 BYN
+    <div class="wrapper">
+        <header>
+            <div class="header_container">
+                <div class="header_content">
+                    <a href="avtorizovan.html" class="button_login">Главная</a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="main_containernarrow">
+                <div class="main_content">
+                  <h1>Отчёт об истории авто</h1>
+                    <div class="main_image">
+                        <img src="{% static 'vincheck/images/imgc.png' %}" alt="">
+                        <div class="carinfo">ТЕКСТ
+
+                        </div>
+                    </div>
+                  </div>
+              </div>
+      </main>
+      <footer>
+          <div class="pricing_container">
+              <div class="pricing-table">
+                  <div class="col">
+                    <div class="table">
+                      <h2>Онлайн отчёт</h2>
+                      <ul>
+                        <li>История техобслуживания</li>
+                        <li>Изменение пробега</li>
+                        <li>Участие в аварийных аукционах</li>
+                        <li>Использование в каршеринге</li>
+                        <li>Участие в ДТП</li>
+                        <li><p>Сведения о розыске,</p>
+                          залогах и ограничениях</li>
+                      </ul>
+                      <a href="formofpayment.html"> Купить от 10BYN </a>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="table">
+                      <h2>Офлайн отчёт</h2>
+                      <ul>
+                        <li></li>
+                        <li>+ Онлайн отчёт</li>
+                        <li> Менее 15 дней</li>
+                        <li> Более 15, но менее 30 дней</li>
+                        <li>Более 30 дней</li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                      </ul>
+                      <a href="formofpayment.html"> Купить от 10BYN </a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </footer>
         </div>
-        <ul>
-          <li>Офлайн отчёт</li>
-          <li>Вся онлайн информация</li>
-          <li>Отчёту более 30 дней</li>
-        </ul>
-        <a href="форма_оплаты.html"> Купить </a>
-      </div>
+    </body>
 
-    </div>
-    <div class="col">
-      <div class="table">
-        <h2>Оптимальный выбор</h2>
-        <div class="pop">Популярное</div>
-        <div class="price">
-          20 BYN
-        </div>
-        <ul>
-          <li>Офлайн отчёт</li>
-          <li>Вся онлайн информация</li>
-          <li> Более 15, но менее 30 дней</li>
-        </ul>
-        <a href="форма_оплаты.html"> Купить </a>
-      </div>
+    </html>
+<style media="screen">
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
 
+a {
+    text-decoration: none;
+}
+img {
+    vertical-align: top;
+}
+h1, h2{
 
-    </div>
-    <div class="col">
-      <div class="table">
-        <h2>Лучшее предложение</h2>
-        <div class="price">
-          30 BYN
-        </div>
-        <ul>
-          <li>Офлайн отчёт</li>
-          <li>Вся онлайн информация</li>
-          <li>Отчёту менее 15 дней</li>
-        </ul>
-        <a href="форма_оплаты.html"> Купить </a>
-      </div>
-
-    </div>
-    <div class="col">
-      <div class="table">
-        <h2>Специальное предложение</h2>
-        <div class="price">
-          10 BYN
-        </div>
-        <ul>
-          <li>Онлайн отчёт</li>
-          <li>Отсутствие офлайн отчёта</li>
-          <li> Более 15, но менее 30 дней</li>
-        </ul>
-        <a href="форма_оплаты.html"> Купить </a>
-      </div>
-
-    </div>
-
-</div>
-
-</div>
-</div>
-
-</body>
-<style>
+}
+html, body {
+    height: 100%;
+}
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #ddeefc;
-  background-size: cover;
-  background-attachment: fixed;
-  min-height: 100vh;
-  display: flex;
-}
-
-header {
-  margin: auto;
-}
-
-
-.wrapper{
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-
-.header_content h1 {
-  text-align: center;
-  text-transform: uppercase;
   font-family: "montserrat",sans-serif;
+  background-color: #ddeefc;
+}
+[class*="_container"] {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 0 15px;
+
 }
 
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+header {
+    background-color: #ddeefc;
+}
+.header_container {
+    padding-top: 30px;
+    padding-bottom: 80px;
+}
+.header_content {
+}
+.button_login {
+    background: #f43648;
+    border-radius: 5px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 30px 10px 30px;
+    position: relative;
+    float: right;
+    text-align: center;
+}
+main {
+    background-color: #ddeefc;
+}
+.main_containernarrow {
+
+}
+.main_content {
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    margin-left: 25%;
+}
+.main_image {
+
+}
+
+.main_image img {
+    max-width: 150px;
+    max-height: 150px;
+    flex: 1 1 auto;
+    float: left;
+}
+.carinfo{
+  float: left;
+  margin: 40px 20px 20px 0;
+}
 .pricing-table{
   /*max-width: 1200px;*/
   display: flex;
@@ -153,12 +204,10 @@ header {
   padding: 10px 0;
   list-style: none;
 }
+footer {
+    background: #ddeefc ;
 
-.price{
-  font-size: 40px;
-  margin-bottom: 20px;
 }
-
 .table a{
   text-decoration: none;
   color: #6495ED;
@@ -180,17 +229,6 @@ header {
 .col:hover{
   transform: scale(1.1);
 }
-
-.pop{
-  background: #DC143C;
-  color:#fff;
-  transform: rotate(45deg);
-  padding: 10px 40px;
-  position: absolute;
-  top: 24px;
-  right: -51px;
-}
-
 @media  screen and (max-width:980px) {
   .col{
     flex:50%;
@@ -207,6 +245,25 @@ header {
     flex:100%;
   }
 }
+@media  screen and (max-width:980px) {
+  .main_content{
+    flex:50%;
+    margin: auto;
+  }
+}
+
+@media  screen and (max-width:700px) {
+  .main_content{
+    flex:100%;
+    margin: auto;
+  }
+}
+@media (max-width: 992px){
+  .main_content{
+    flex:100%;
+    margin: auto;
+  }
+}
+
 
 </style>
-</html>
