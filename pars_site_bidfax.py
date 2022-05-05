@@ -7,6 +7,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+# test
+
+
 def pars_site_bidfax(vin):  # парсинг сайта bidfax, возвращает dict с информацией о машине
     try:  # запуск и проверка сайта на работоспособность
         browser = main.get_browser('https://bidfax.info/')
