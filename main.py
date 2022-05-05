@@ -11,6 +11,7 @@ from threading import Thread
 from selenium import webdriver
 
 # аминь
+# святой дух
 
 def get_browser(url, options=None):
     browser = webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe", options=options)
