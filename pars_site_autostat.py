@@ -6,7 +6,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from seleniumwire import webdriver as wier_webdriver
 
-# аминь
 
 def pars_site_autoastat(vin):
     # подключение прокси
