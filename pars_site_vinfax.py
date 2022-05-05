@@ -4,7 +4,7 @@ import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-
+# testing
 
 def pars_site_vinfax(vin):
     try:
