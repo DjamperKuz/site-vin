@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'vincheck/css/style1.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -38,7 +37,7 @@
                             <div class="window"
                                 data-tooltip="VIN-код - это уникальный код транспортного средства, состоящий из 17 знаков">
                                 <input type="submit" value="?" class="first_button"></div>
-                                <a href = "{% url 'tovar' %}" class="second_button"> Проверить </a>
+                                <a href = "signin.html" class="second_button"> Проверить </a>
                         </form>
                     </div>
                 </div>
@@ -48,38 +47,38 @@
             <div class="footer_container">
                 <div class="footer_containernarrow">
                     <div class="footer_blocks">
-                        <a  class="footer_block">
+                        <a href="" class="footer_block">
                             История технических <p>осмотров</p>
                         </a>
-                        <a  class="footer_block">
+                        <a href="" class="footer_block">
                             Нахождение в <p>розыске</p>
                         </a>
-                        <a  class="footer_block">
+                        <a href="" class="footer_block">
                             Залоги и <p>ограничения</p>
                         </a>
-                        <a  class="footer_block">
+                        <a href="" class="footer_block">
                             Проверка <p>на ДТП</p>
                         </a>
                         <div class="line"></div>
                         <div class="line"></div>
                         <div class="line"></div>
                         <div class="line"></div>
-                        <a  class="footer_block">
+                        <a href="" class="footer_block">
                             Сведения технических и<p>диагностических осмотров</p>
                         </a>
-                        <a  class="footer_block">
+                        <a href="" class="footer_block">
                             Сведения о нахождение <p>автомобиля в розыске</p>
                             <p>
                                 на территории РБ и РФ
                             </p>
                         </a>
-                        <a  class="footer_block">
+                        <a href="" class="footer_block">
                             Сведения о нахождение <p>автомобиля в залоге</p>
                             <p>
                                 по данным на 2022 год
                             </p>
                         </a>
-                        <a  class="footer_block">
+                        <a href="" class="footer_block">
                             Возможность проверить<p>участие авто в</p>
                             <p>
                                 ДТП
@@ -87,9 +86,291 @@
                         </a>
                     </div>
                 </div>
-                </div>
+            </div>
         </footer>
     </div>
 </body>
 
 </html>
+
+<style>
+/* *обнуление*/
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+ul, ol, li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+html, body {
+    height: 100%;
+    /*line-height: 1;*/
+    background-color: #ddeefc;
+}
+ [class*="_container"] {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+
+}
+[class*="_containernarrow"] {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+
+}
+body {
+
+}
+
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+
+
+
+}
+header {
+    background-color: #ddeefc;
+
+}
+.header_container {
+    padding-top: 30px;
+    padding-bottom: 80px;
+
+
+
+
+
+}
+.header_content {
+
+
+}
+.button_login {
+    background: #f43648;
+    border-radius: 5px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 30px 10px 30px;
+    position: relative;
+    float: right;
+    text-align: center;
+}
+main {
+    background-color: #ddeefc;
+}
+.main_containernarrow {
+
+}
+.main_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main_image {
+
+}
+
+.main_image img {
+    max-width: 608px;
+    max-height: 329px;
+    flex: 1 1 auto;
+
+}
+
+@media (max-width: 767.98px){
+    .main_image img {
+        max-width: 308px;
+        max-height: 165px;
+        flex: 1 1 auto;
+    }
+}
+.main_form {
+    padding-bottom: 100px;
+
+}
+fieldset {
+    border: none;
+}
+.vin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 23px;
+    border: none;
+}
+.your_vin {
+    padding: 10px 200px 10px 10px;
+    border: none;
+    border-radius: 5px 0px 0px 5px;
+
+
+}
+input::placeholder {
+    color:  #807f7f;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+      }
+
+input {outline:none;}
+.first_button {
+    position: relative;
+    background-color: white;
+    border: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Montserrat";
+    right: 50px;
+    bottom: 1px;
+    cursor: pointer;
+}
+
+[data-tooltip] {
+    position: relative;
+    display: inline-block;
+  }
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    color: #ffffff;
+    font-family: "Montserrat";
+    font-size: 14px;
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.5s;
+    top: 0;
+    left: -150px;
+    background-color: #3f3f3f;
+    border-radius: 5px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+
+  }
+
+  [data-tooltip]:hover::after {
+    opacity: 1;
+    top: -8em;
+
+  }
+.second_button {
+    background: #f43648;
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 10px 10px 10px;
+    position: relative;
+    right: 40px;
+    cursor: pointer;
+
+}
+@media (max-width: 767.98px){
+    .your_vin {
+        padding: 10px 30px 10px 10px;
+
+    }
+    .main_form {
+        padding-top: 20px;
+        padding-bottom: 50px;
+        position: relative;
+        left: 15px;
+
+    }
+    .second_button {
+        padding: 10px 20px 10px 10px;
+
+    }
+}
+footer {
+    background: linear-gradient(to top, #a31624 50%, #ddeefc 50%);
+
+}
+.footer_container {
+
+
+}
+.footer_content {
+
+
+
+
+}
+.footer_blocks {
+    background-color: #313131;
+    padding: 30px 10px 30px 10px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-row-gap: 10px;
+    margin: auto;
+    text-align: center;
+
+}
+@media (max-width: 992.98px){
+    .footer_blocks{
+        grid-template-columns: 50% 50%;
+    }
+}
+@media (max-width: 767.98px){
+    .footer_blocks{
+        grid-template-columns: 100%;
+        margin: auto;
+    }
+}
+.footer_block {
+    color: white;
+    font-family: "Montserrat";
+    font-size: 16px;
+    letter-spacing: normal;
+    line-height: 22px;
+}
+
+
+.line {
+    background-color: #a31624;
+    width: 20%;
+   margin: auto;
+    padding: 2px;
+}
+@media (max-width: 992.98px){
+    .line{
+        display: none;
+    }
+}
+@media (max-width: 767.98px){
+    .line{
+        display: none;
+    }
+}
+</style>
