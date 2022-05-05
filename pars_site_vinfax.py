@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-# test
 
 def pars_site_vinfax(vin):
     try:
