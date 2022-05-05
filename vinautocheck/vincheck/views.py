@@ -15,3 +15,7 @@ def tovar(request):
 
 def avtorizovan(request):
     return render(request, 'vincheck/avtorizovan.html')
+
+
+def forgotform(request):
+    return render(request, 'vincheck/forgotform.html')
