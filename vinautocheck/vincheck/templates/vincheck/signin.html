@@ -36,24 +36,12 @@
       <a href="{% url 'forgotform' %}" class="form_forgot">Восстановить пароль </a>
     </p>
   </form>
-
-  <form action="#" class="form form_signup">
+  <form method="post" class="form form_signup">
+    {% csrf_token %}
     <h3 class="form_title"> Регистрация</h3>
-
+    {{ form.as_p }}
     <p>
-      <input type="text" class="form_input" placeholder="Логин">
-    </p>
-    <p>
-      <input type="email" class="form_input" placeholder="Email">
-    </p>
-    <p>
-      <input type="password" class="form_input" placeholder="Пароль">
-    </p>
-    <p>
-      <input type="password" class="form_input" placeholder="Подтвердите пароль">
-    </p>
-    <p>
-      <a href="{% url 'avtorizovan' %}" button class="form_btn form_btn_signup"> Зарегистрироваться </button></a>
+      <button href="{% url 'signin' %}" class="form_btn form_btn_signup"> Зарегистрироваться </button>
     </p>
   </form>
 
