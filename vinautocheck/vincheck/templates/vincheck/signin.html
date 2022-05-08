@@ -19,8 +19,8 @@
   <h1>Вход</h1>
   {{ form.as_p }}
   <input type="submit"  value="Войти" class="signup-btn">
+  <a href="{% url 'signup' %}" class="reg-btn">Нет аккаунта? Зарегистрируйтесь</a>
 </form>
-
 </body>
 <style media="screen">
 body{
@@ -86,7 +86,25 @@ body{
   font-size: inherit;
   background-color:#6495ED; /*#03a9f4;*/
   color: white;
-  padding: 10px 50px;
+  padding: 10px 90px;
 }
+
+.reg-btn{
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color:  black;
+  font-family: sans-serif;
+  padding: 10px 60px;
+  transition: 0.25s;
+  border-radius: 24px;
+  display: block;
+  text-align:center;
+}
+
+.reg-btn:hover{
+  background: #ddeefc;
+}
+
 </style>
 </html>

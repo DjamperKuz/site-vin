@@ -19,11 +19,7 @@
         <header>
             <div class="header_container">
                 <div class="header_content">
-                    {% if request.user.is_authenticated %}
-                    <a href="personalcabinet.html" class="button_personalcabinet">Личный кабинет</a> | <a href="{% url 'logout' %}">Выйти</a>
-                    {% else %}
-                    <a href="{% url 'signup' %}" class="button_login">Войти</a>
-                    {% endif %}
+                    <a href="{% url 'signin' %}" class="button_login">Войти</a>
                 </div>
             </div>
         </header>
@@ -132,7 +128,6 @@ html, body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
-
 }
 [class*="_containernarrow"] {
     max-width: 1000px;
@@ -143,32 +138,20 @@ html, body {
 body {
 
 }
-
 .wrapper {
     overflow: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100%;
-
-
-
 }
 header {
     background-color: #ddeefc;
-
 }
 .header_container {
     padding-top: 30px;
     padding-bottom: 80px;
-
-
-
-
-
 }
 .header_content {
-
-
 }
 .button_login {
     background: #f43648;
@@ -186,7 +169,6 @@ main {
     background-color: #ddeefc;
 }
 .main_containernarrow {
-
 }
 .main_content {
     display: flex;
@@ -194,14 +176,12 @@ main {
     align-items: center;
 }
 .main_image {
-
 }
 
 .main_image img {
     max-width: 608px;
     max-height: 329px;
     flex: 1 1 auto;
-
 }
 
 @media (max-width: 767.98px){
@@ -213,7 +193,6 @@ main {
 }
 .main_form {
     padding-bottom: 100px;
-
 }
 fieldset {
     border: none;

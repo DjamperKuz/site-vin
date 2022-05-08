@@ -20,7 +20,7 @@ class RegisterUser(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('main_search')
+        return redirect('avtorizovan')
 
 
 class LoginUser(LoginView):
@@ -28,7 +28,7 @@ class LoginUser(LoginView):
     template_name = 'vincheck/signin.html'
 
     def get_success_url(self):
-        return reverse_lazy('main_search')
+        return reverse_lazy('avtorizovan')
 
 
 def logout_user(request):
@@ -42,6 +42,10 @@ def tovar(request):
 
 def avtorizovan(request):
     return render(request, 'vincheck/avtorizovan.html')
+
+
+def personalcabinet(request):
+    return render(request, 'vincheck/personalcabinet.html')
 
 
 def forgotform(request):

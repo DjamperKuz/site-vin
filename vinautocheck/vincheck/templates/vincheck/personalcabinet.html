@@ -1,0 +1,311 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка VIN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Montserrat:wght@400;600;700&family=Roboto&family=Rubik:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header_container">
+                <div class="header_content">
+                  <div class="dropdown">
+                    <button class="dropbtn">Мои данные</button>
+                    <div class="dropdown-content">
+                      <a href="{% url 'avtorizovan' %}">Главная</a>
+                      <a href="my_inf.html">Мои отчёты</a>
+                      <a href="{% url 'logout' %}">Выход</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </header>
+              <main>
+                  <div class="main_containernarrow">
+                      <div class="main_content">
+                        <h1>Личный кабинет</h1>
+                              </div>
+                          </div>
+
+            </main>
+            <footer>
+              <div class="pricing_container">
+                <div class="pricing-table">
+                  <div class="col">
+                    <div class="table">
+                      <input type="text" placeholder="Фамилия" class="txtb">
+                      <input type="text" placeholder="Имя" class="txtb">
+                      <input type="text" placeholder="Отчество" class="txtb">
+                      <input type="email" placeholder="Почта" class="txtb">
+                      <input  type="password" name="password" class = "form_input" required placeholder="Новый пароль">
+                      <input  type="password" name="password" class = "form_input" required placeholder="Повторите пароль">
+                      <input type="submit"  value="Сохранить" class="signup-btn">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </footer>
+        </div>
+    </body>
+    </html>
+<style media="screen">
+
+html, body {
+    height: 100%;
+}
+body {
+  font-family: "montserrat",sans-serif;
+  background-color: #ddeefc;
+}
+[class*="_container"] {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 0 15px;
+
+}
+
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+header {
+    background-color: #ddeefc;
+}
+.header_container {
+    padding-top: 30px;
+    padding-bottom: 80px;
+}
+.header_content {
+}
+.button_login {
+    background: #f43648;
+    border-radius: 5px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 30px 10px 30px;
+    position: relative;
+    float: right;
+    text-align: center;
+}
+main {
+    background-color: #ddeefc;
+}
+.main_containernarrow {
+
+}
+.main_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main_image {
+
+}
+
+
+
+footer {
+    background: #ddeefc ;
+
+}
+.pricing-table{
+  /*max-width: 1200px;*/
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+
+}
+
+.col{
+ flex:25%;
+ padding: 10px;
+ max-width: 320px;
+ box-sizing: border-box;
+ transition: transform 0.5s;
+
+}
+.txtb{
+  border: 0;
+    background: #ffffff;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #6495ED;
+    padding: 10px 50px;
+    width: 150px;
+    outline: none;
+    border-radius: 5px;
+    transition: 0.25s;
+}
+
+.txtb:focus{
+
+  border-color: #3498db;
+}
+
+.table{
+  background: #fff;
+  padding: 10px 20px;
+  font-family: "montserrat",sans-serif;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px #00000070;
+}
+.table a{
+  text-decoration: none;
+  color: #6495ED;
+  border: 2px solid #6495ED;
+  display: block;
+  padding: 10px 0;
+  margin: 10px 0;
+  border-radius: 40px;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: 0.5s linear;
+}
+
+.table a:hover{
+  background: #6495ED;
+  color: #fff;
+}
+
+.form_input{
+  border: 0;
+  background: #ffffff;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  border: 2px solid #6495ED ;
+  padding: 14px 50px;
+  width: 150px;
+  outline: none;
+  border-radius: 5px;
+  transition: 0.25s;
+}
+.form_input:focus{
+
+  border-color: #3498db;
+}
+.dropbtn {
+  border-color: transparent;
+  background: #f43648;
+  border-radius: 5px;
+  color: white;
+  font-family: "Montserrat" ,sans-serif;
+  font-size: 17px;
+  font-weight: 300;
+  padding: 10px 30px 10px 30px;
+  text-align: center;
+}
+.dropdown {
+    justify-content: start;
+    float: right;
+    position: relative;
+    display: inline-block;
+    font-family: "Montserrat" ,sans-serif;
+
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color:   #3f3f3f;
+    min-width: 60px;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    font-family: "Montserrat";
+
+}
+
+.dropdown-content a {
+    color: white;
+    font-family: "Montserrat" ,sans-serif;
+    font-size: 15px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    font-weight: 700px;
+    text-align: center;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.signup-btn{
+  border: 0;
+  background: #fff;
+  display: block;
+  margin:20px auto;
+  text-align: center;
+  border: 2px solid #6495ED ;
+  padding: 10px 20px;
+  outline: none;
+  border-radius: 5px;
+  transition: 0.25s;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family:"montserrat", sans-serif;
+}
+.signup-btn:hover{
+  background:#DC143C ;
+  border: 2px solid #DC143C ;
+}
+.dropdown-content a:hover {background-color: #f43648;}
+
+
+.dropdown:hover .dropdown-content {display: block;}
+
+
+.dropdown:hover .dropbtn {background-color: #f43648;}
+@media  screen and (max-width:980px) {
+  .col{
+    flex:50%;
+  }
+}
+
+@media  screen and (max-width:700px) {
+  .col{
+    flex:100%;
+  }
+}
+@media (max-width: 992px){
+  .col{
+    flex:100%;
+  }
+}
+@media  screen and (max-width:980px) {
+  .main_content{
+    flex:50%;
+    margin: auto;
+  }
+}
+
+@media  screen and (max-width:700px) {
+  .main_content{
+    flex:100%;
+    margin: auto;
+  }
+}
+@media (max-width: 992px){
+  .main_content{
+    flex:100%;
+    margin: auto;
+  }
+}
+
+
+</style>
