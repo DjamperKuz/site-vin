@@ -30,10 +30,9 @@
                         <img src="{% static 'vincheck/images/VIN.png' %}" alt="">
                     </div>
                     <div class="main_form">
-                        <form class="vin">
-                            {% csrf_token %}
+                        <form class="vin" method="post">
                             <fieldset>
-                                <p><input name="VIN-код" placeholder="Укажите VIN" class="your_vin"></p>
+                                {{ form.as_p }}
                             </fieldset>
                             <div class="window"
                                 data-tooltip="VIN-код - это уникальный код транспортного средства, состоящий из 17 знаков">

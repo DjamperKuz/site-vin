@@ -23,3 +23,7 @@ class LoginUserForm(AuthenticationForm):
                                                                        'placeholder': 'Логин'}))
     password = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form_input',
                                                                            'placeholder': 'Пароль'}))
+
+
+class VINForm(forms.Form):
+    vin = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'your_vin', 'placeholder': 'Укажите VIN'}))
