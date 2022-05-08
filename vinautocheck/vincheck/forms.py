@@ -30,7 +30,7 @@ class VINForm(forms.Form):
 
 
 class RecoveryPassForm(forms.Form):
-    email = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'txtb', 'placeholder': 'Почта'}))
+    email = forms.CharField(label='', widget=forms.EmailInput(attrs={'class': 'txtb', 'placeholder': 'Почта'}))
 
 
 class CreateNewPassword(UserCreationForm):

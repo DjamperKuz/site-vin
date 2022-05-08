@@ -119,11 +119,12 @@ def password_reset_request(request):
             }
             msg_html = render_to_string(email_template_name, cont)
             try:
-                send_mail(subject, 'ссылка', 'admin@django-project.site', [user.email], fail_silently=True,
-                          html_message=msg_html)
+                send_mail(subject, message='Ссылка для восстановления пароля',
+                          from_email='tomaslex@mail.ru', recipient_list=[user.email], fail_silently=True,
+                          html_message=msg_html, auth_password='C4N9A3nkmwNm7RyAxzku')
             except BadHeaderError:
                 return HttpResponse('Обнаружен недопустимый заголовок!')
-            return redirect("/password_reset/done/")
+            return redirect("password_reset_done")
     else:
         password_reset_form = RecoveryPassForm()
     return render(request=request, template_name="vincheck/password_reset.html",
