@@ -57,6 +57,7 @@ def logout_user(request):
     return redirect('signin')
 
 
+@login_required()
 def tovar(request):
     return render(request, 'vincheck/tovar.html')
 
@@ -129,3 +130,8 @@ def password_reset_request(request):
         password_reset_form = RecoveryPassForm()
     return render(request=request, template_name="vincheck/password_reset.html",
                   context={"password_reset_form": password_reset_form})
+
+
+def index(request):
+    return render(request, 'vincheck/index.html')
+
