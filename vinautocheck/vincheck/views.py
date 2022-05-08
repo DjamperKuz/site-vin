@@ -66,6 +66,16 @@ def personalcabinet(request):
     return render(request, 'vincheck/personalcabinet.html')
 
 
+class RecoveryPassword(CreateView):
+    form_class = CreateNewPassword
+    template_name = 'vincheck/recoverypassword.html'
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('signin')
+
+
 def forgotform(request):
     if request.method == 'POST':
         form = RecoveryPassForm(request.POST)

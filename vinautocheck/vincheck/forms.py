@@ -34,5 +34,8 @@ class RecoveryPassForm(forms.Form):
     email = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'txtb', 'placeholder': 'Почта'}))
 
 
-class CreateNewPassword():
-    pass
+class CreateNewPassword(UserCreationForm):
+    password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'txtb',
+                                                                            'placeholder': 'Пароль'}))
+    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'txtb',
+                                                                            'placeholder': 'Подтвердите пароль'}))

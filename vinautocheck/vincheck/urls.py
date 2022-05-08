@@ -11,5 +11,6 @@ urlpatterns = [
     path('tovar/', tovar, name='tovar'),
     path('avtorizovan/', avtorizovan, name='avtorizovan'),
     path('personalcabinet/', personalcabinet, name='personalcabinet'),
-    path('forgotform/', forgotform, name='forgotform')
+    path('forgotform/', forgotform, name='forgotform'),
+    path('recoverypassword/', RecoveryPassword.as_view(), name='recoverypassword')
 ]
