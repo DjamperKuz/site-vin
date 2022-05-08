@@ -1,13 +1,18 @@
 import requests
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import LoginView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
+from django.core.mail import send_mail, BadHeaderError
 
 from .forms import *
 
@@ -93,3 +98,33 @@ def forgotform(request):
     else:
         form = RecoveryPassForm()
     return render(request, 'vincheck/forgotform.html', {"form": form})
+
+
+def password_reset_request(request):
+    if request.method == "POST":
+        password_reset_form = RecoveryPassForm(request.POST)
+        if password_reset_form.is_valid():
+            mail = password_reset_form.cleaned_data['email']
+            user = User.objects.get(email=mail)  # email в форме регистрации проверен на уникальность
+            subject = 'Запрошен сброс пароля'
+            email_template_name = "vincheck/email_password_reset.html"
+            cont = {
+                "email": user.email,
+                'domain': '127.0.0.1:8000',  # доменное имя сайта
+                'site_name': 'Website',  # название своего сайта
+                "uid": urlsafe_base64_encode(force_bytes(user.pk)),  # шифруем идентификатор
+                "user": user,  # чтобы обратиться в письме по логину пользователя
+                'token': default_token_generator.make_token(user),  # генерируем токен
+                'protocol': 'http',
+            }
+            msg_html = render_to_string(email_template_name, cont)
+            try:
+                send_mail(subject, 'ссылка', 'admin@django-project.site', [user.email], fail_silently=True,
+                          html_message=msg_html)
+            except BadHeaderError:
+                return HttpResponse('Обнаружен недопустимый заголовок!')
+            return redirect("/password_reset/done/")
+    else:
+        password_reset_form = RecoveryPassForm()
+    return render(request=request, template_name="vincheck/password_reset.html",
+                  context={"password_reset_form": password_reset_form})
