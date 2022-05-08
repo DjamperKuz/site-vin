@@ -4,6 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
+from django.contrib.auth.decorators import login_required
 
 from .forms import *
 
@@ -15,7 +16,6 @@ def main_search(request):
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'vincheck/signup.html'
-    # success_url = reverse_lazy('signin')
 
     def form_valid(self, form):
         user = form.save()
@@ -40,10 +40,12 @@ def tovar(request):
     return render(request, 'vincheck/tovar.html')
 
 
+@login_required()
 def avtorizovan(request):
     return render(request, 'vincheck/avtorizovan.html')
 
 
+@login_required()
 def personalcabinet(request):
     return render(request, 'vincheck/personalcabinet.html')
 

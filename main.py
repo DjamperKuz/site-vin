@@ -9,6 +9,7 @@ import pars_site_gibdd_no_api
 import pars_site_vinfax
 from threading import Thread
 from selenium import webdriver
+from sys import argv
 
 
 def get_browser(url, options=None):
@@ -31,16 +32,17 @@ def save_json(dict_json, name_file):
         json.dump(dict_json, outfile, separators=(',', ': '), indent=4, ensure_ascii=False)
 
 
-vin = 'MBHHFD31S00161054'
+script, vin = argv
 
 
 def main():
+    print(vin)
     Thread(target=pars_site_bidfax.main_bidfax).start()
     # Thread(target=pars_site_autostat.main_autostat).start()
     # Thread(target=pars_site_gibdd_no_api.main_gibdd).start()
     Thread(target=pars_site_gost.main_gost).start()
     # Thread(target=pars_site_costom_belarus.main_customs).start()
-    Thread(target=pars_site_vinfax.main_vinfax).start()
+    # Thread(target=pars_site_vinfax.main_vinfax).start()
     # Thread(target=pars_site_fed_resource.main_fed_res).start()
 
 
