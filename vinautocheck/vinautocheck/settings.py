@@ -125,3 +125,10 @@ STATICFILES_DIRS = []
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/signin/'
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'tomaslex@mail.ru'
+EMAIL_PORT_PASSWORD = 'C4N9A3nkmwNm7RyAxzku'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True

@@ -27,3 +27,12 @@ class LoginUserForm(AuthenticationForm):
 
 class VINForm(forms.Form):
     vin = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'your_vin', 'placeholder': 'Укажите VIN'}))
+
+
+class RecoveryPassForm(forms.Form):
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'txtb', 'placeholder': 'Логин'}))
+    email = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'txtb', 'placeholder': 'Почта'}))
+
+
+class CreateNewPassword():
+    pass

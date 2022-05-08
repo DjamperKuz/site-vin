@@ -1,4 +1,5 @@
 import requests
+from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
@@ -6,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 from .forms import *
 
@@ -17,7 +19,7 @@ def main_search(request):
         # check whether it's valid:
         if form.is_valid():
             vin = form.cleaned_data
-            print
+            print()
             return HttpResponseRedirect('/vincheck/tovar/')
 
     # if a GET (or any other method) we'll create a blank form
@@ -65,4 +67,19 @@ def personalcabinet(request):
 
 
 def forgotform(request):
-    return render(request, 'vincheck/forgotform.html')
+    if request.method == 'POST':
+        form = RecoveryPassForm(request.POST)
+        if form.is_valid():
+            user_email = form.cleaned_data['email']
+            mail = send_mail(subject=form.cleaned_data['username'], message='Ссылка для восстановления пароля',
+                             from_email='tomaslex@mail.ru',
+                             recipient_list=[user_email], fail_silently=False, auth_password='C4N9A3nkmwNm7RyAxzku')
+            if mail:
+                return redirect('main_search')
+            else:
+                messages.error(request, "Ошибка отправки")
+        else:
+            messages.error(request, 'Ошибка регистрации')
+    else:
+        form = RecoveryPassForm()
+    return render(request, 'vincheck/forgotform.html', {"form": form})
