@@ -21,11 +21,7 @@
                   <div class="dropdown">
                     <button class="dropbtn">Мои данные</button>
                     <div class="dropdown-content">
-                      {% if request.user.is_authenticated %}
-                      <a href="{% url 'avtorizovan' %}">Главная</a>
-                      {% else %}
                       <a href="{% url 'main_search' %}">Главная</a>
-                      {% endif %}
                       <a href="my_inf.html">Мои отчёты</a>
                       <a href="{% url 'logout' %}">Выход</a>
                     </div>

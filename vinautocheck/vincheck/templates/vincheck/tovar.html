@@ -18,11 +18,7 @@
         <header>
             <div class="header_container">
                 <div class="header_content">
-                    {% if request.user.is_authenticated %}
-                    <a href="{% url 'avtorizovan' %}" class="button_login">Главная</a>
-                    {% else %}
                     <a href="{% url 'main_search' %}" class="button_login">Главная</a>
-                    {% endif %}
                 </div>
             </div>
         </header>

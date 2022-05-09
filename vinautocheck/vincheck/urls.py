@@ -9,12 +9,12 @@ urlpatterns = [
     path('signin/', LoginUser.as_view(), name='signin'),
     path('logout/', logout_user, name='logout'),
     path('tovar/', tovar, name='tovar'),
-    path('avtorizovan/', avtorizovan, name='avtorizovan'),
     path('personalcabinet/', personalcabinet, name='personalcabinet'),
-    path('forgotform/', forgotform, name='forgotform'),
-    path('recoverypassword/', RecoveryPassword.as_view(), name='recoverypassword'),
+    # path('recoverypassword/', RecoveryPassword.as_view(), name='recoverypassword'),
+
+    # смена пароля с помощью почты
     path("password-reset/", password_reset_request, name="password_reset"),
     path("password-reset/done/", auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
     path("password-reset-confirm/<uidb64>/<token>", auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-    path("password-reset-complete/", auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete")
+    path("password-reset-complete/", auth_views.PasswordResetCompleteView.as_view(), name="password_reset_complete"),
 ]

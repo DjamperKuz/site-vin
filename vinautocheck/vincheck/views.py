@@ -1,7 +1,4 @@
-import requests
-from django.contrib import messages
 from django.contrib.auth import login, logout
-from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect, HttpResponse
@@ -10,13 +7,14 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail, BadHeaderError
 
 from .forms import *
 
 
+# главная страница
 def main_search(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -34,6 +32,7 @@ def main_search(request):
     return render(request, 'vincheck/main_search.html', {'form': form})
 
 
+# регистрация пользователя
 class RegisterUser(CreateView):
     form_class = RegisterUserForm
     template_name = 'vincheck/signup.html'
@@ -41,29 +40,27 @@ class RegisterUser(CreateView):
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-        return redirect('avtorizovan')
+        return redirect('main_search')
 
 
+# вход в аккаунт
 class LoginUser(LoginView):
     form_class = LoginUserForm
     template_name = 'vincheck/signin.html'
 
     def get_success_url(self):
-        return reverse_lazy('avtorizovan')
+        return reverse_lazy('main_search')
 
 
+# выход из аккаунта
 def logout_user(request):
     logout(request)
     return redirect('signin')
 
 
+# страница с выбором товара
 def tovar(request):
     return render(request, 'vincheck/tovar.html')
-
-
-@login_required()
-def avtorizovan(request):
-    return render(request, 'vincheck/avtorizovan.html')
 
 
 @login_required()
@@ -71,35 +68,7 @@ def personalcabinet(request):
     return render(request, 'vincheck/personalcabinet.html')
 
 
-class RecoveryPassword(CreateView):
-    form_class = CreateNewPassword
-    template_name = 'vincheck/recoverypassword.html'
-
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('signin')
-
-
-def forgotform(request):
-    if request.method == 'POST':
-        form = RecoveryPassForm(request.POST)
-        if form.is_valid():
-            user_email = form.cleaned_data['email']
-            mail = send_mail(subject=form.cleaned_data['username'], message='Ссылка для восстановления пароля',
-                             from_email='tomaslex@mail.ru',
-                             recipient_list=[user_email], fail_silently=False, auth_password='C4N9A3nkmwNm7RyAxzku')
-            if mail:
-                return redirect('main_search')
-            else:
-                messages.error(request, "Ошибка отправки")
-        else:
-            messages.error(request, 'Ошибка регистрации')
-    else:
-        form = RecoveryPassForm()
-    return render(request, 'vincheck/forgotform.html', {"form": form})
-
-
+# восстановление пароля с помощью почты
 def password_reset_request(request):
     if request.method == "POST":
         password_reset_form = RecoveryPassForm(request.POST)

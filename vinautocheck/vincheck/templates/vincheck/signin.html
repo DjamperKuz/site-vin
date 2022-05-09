@@ -19,6 +19,7 @@
   <h1>Вход</h1>
   {{ form.as_p }}
   <input type="submit"  value="Войти" class="signup-btn">
+  <a href="{% url 'password_reset' %}" class="reg-btn">Забыли пароль?</a>
   <a href="{% url 'signup' %}" class="reg-btn">Нет аккаунта? Зарегистрируйтесь</a>
 </form>
 </body>
