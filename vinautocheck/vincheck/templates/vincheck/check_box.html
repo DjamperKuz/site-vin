@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<head>
+  <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcFBv8GBQX/DQ0N8g0NDfIKCgr1CAgI9woKCvUAAQD/ExMT/zQ0NMt5eXmG7e3tEgAAAAAAAAAAAAAAAD0Zyf8HAR7/Z2ho/wsTEP8QDw//FAFa/xABSf8QAUv/FABj/z09Pf9CSUf/MSdk3wAAAAAAAAAAEg8Q/9DR0f8QDA7/2+Pe/9HMzv+vrq//OTg5/xIBVf8VFxb/ERER/4do/P89QT//y8vL/41v//8WAWT/FAFe/xYBaf9KSkr/TCjX/yEZHf8JBgf/Dg8O/yAkIv8PEhH/IgGj/x0Bhv9oRPP/Pz0+/wgJCf8XAWr/FwFq/xcBbv8WAWf/RUdH/2pK4/8tCbj/IgGd/xwBgv8XAW7/FwFp/xcBbf8XAWn/GAFy/z0ZyP+Lbf//e1j//25K+v8ZAXP/GAFx/xsBgP8AAAAAAAAAAI2Au1yGZ///hWX//4ts//+BX///dVH+/29L+v85FcT/RyPS/xYBaP9RLdz/VjLh/2RA7/+Ocf//AAAAAAAAAAAAAAAAAAAAAIeKiP+/v79AZGdm/11dXf9APT7/MDg0/x8mI/+/v79AT05O/1ZeWv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZErG5l9hYP9NTk7/XV1e/1FXVP8mJyf/yMjI//X29f8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD//wAA//8AAIAPAAAADAAAAAAAAAAAAAAAAAAA4AAAAPQTAAD4BwAA//8AAP//AAD//wAA//8AAA==" rel="icon" type="image/x-icon" />
+  <meta charset = "utf-8">
+  <title>Личный кабинет</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Montserrat:wght@400;600;700&family=Roboto&family=Rubik:wght@400;700&display=swap"
+      rel="stylesheet">
+</head>
+<body>
+  <div class='button_back'>
+    <a href="tovar.html" class="back">Назад</a>
+  </div>
+  <div class="checkbox">
+    <div class='otchet'>
+      <p>Онлайн отчет + офлайн отчет</p>
+    </div>
+      <input class="checkbox_input" type="checkbox" id="checkbox_1" >
+    <label class="checkbox_label" for="checkbox_1">Проверить реестр залогов РБ</label>
+    <p>Отчету n дней</p>
+    <p>VIN:</p>
+  </div>
+  <div class="itogo">
+    <p>Итого<сумма></p>
+  </div>
+  <div class='button_oplat'>
+    <a href="форма_оплаты.html" class="oplata">Оплатить картой</a>
+  </div>
+  <div class="car">
+    <img src="car.png" class="go">
+  </div>
+</body>
+</html>
+<style media="screen">
+body {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background-color: #ddeefc;
+      font-family: "Montserrat", san-serif;
+      font-size: 18px;
+}
+.otchet{
+  font-size: 30px;
+  font-weight: bold;
+}
+.button_back{
+  position: relative;
+  float: left;
+}
+.back {
+    text-decoration: none;
+    background: #f43648;
+    border-radius: 5px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+}
+.checkbox{
+  display: block;
+  position: relative;
+  margin-top: 10%;
+}
+.checkbox_input{
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+.itogo{
+  position: relative;
+  margin-top: 8%;
+  font-size: 30px;
+  font-weight: bold
+}
+.button_oplat{
+  position: relative;
+  margin-top: 6%
+}
+.oplata {
+    text-decoration: none;
+    background: #f43648;
+    border-radius: 5px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+}
+.car{
+  display: flex;
+  margin-top: -35%;
+  margin-left: 30%;
+}
+.go{
+  width: 80%;
+  height: 40%;
+}
+@media (max-width: 440.98px){
+  .car{
+    margin-top: -64%;
+    margin-left: 10%;
+  }
+  .itogo{
+    margin-top: 25%;
+  }
+  .button_oplat{
+    align-self: center;
+    margin-top: 6%;
+  }
+}
+@media (max-width: 280.98px){
+  .car{
+    margin-top: -70%;
+    margin-left: 10%;
+  }
+  .itogo{
+    margin-top: 25%;
+  }
+  .button_oplat{
+    align-self: center;
+    margin-top: 6%;
+  }
+}
+</style>
