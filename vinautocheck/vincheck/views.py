@@ -22,14 +22,14 @@ def main_search(request):
         # check whether it's valid:
         if form.is_valid():
             vin = form.cleaned_data
-            print()
-            return HttpResponseRedirect('/vincheck/tovar/')
+            print(vin)
+            return HttpResponseRedirect('tovar')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = VINForm()
 
-    return render(request, 'vincheck/main_search.html', {'form': form})
+    return render(request=request, template_name='vincheck/main_search.html', context={'form': form})
 
 
 # регистрация пользователя
