@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0 ">
   <title>Оплата</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style_pay.css">
   <script src="script.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
   <script src="https://unpkg.com/vue-the-mask@0.11.1/dist/vue-the-mask.js"></script>
@@ -42,14 +42,14 @@
                     <div class="card-item__numberItem"
                       :class="{ '-active' : n.trim() === '' }"
                       :key="$index" v-else-if="cardNumber.length > $index">
-                      {{cardNumber[$index]}}
+                      {cardNumber[$index]}
                     </div>
                     <div
                       class="card-item__numberItem"
                       :class="{ '-active' : n.trim() === '' }"
                       v-else
                       :key="$index + 1"
-                    >{{n}}</div>
+                    >{n}</div>
                   </transition>
                 </span>
                 </template>
@@ -64,14 +64,14 @@
                       <div class="card-item__numberItem"
                         :class="{ '-active' : n.trim() === '' }"
                         :key="$index" v-else-if="cardNumber.length > $index">
-                        {{cardNumber[$index]}}
+                        {cardNumber[$index]}
                       </div>
                       <div
                         class="card-item__numberItem"
                         :class="{ '-active' : n.trim() === '' }"
                         v-else
                         :key="$index + 1"
-                      >{{n}}</div>
+                      >{n}</div>
                     </transition>
                   </span>
                 </template>
@@ -82,7 +82,7 @@
                   <transition name="slide-fade-up">
                     <div class="card-item__name" v-if="cardName.length" key="1">
                       <transition-group name="slide-fade-right">
-                        <span class="card-item__nameItem" v-for="(n, $index) in cardName.replace(/\s\s+/g, ' ')" v-if="$index === $index" v-bind:key="$index + 1">{{n}}</span>
+                        <span class="card-item__nameItem" v-for="(n, $index) in cardName.replace(/\s\s+/g, ' ')" v-if="$index === $index" v-bind:key="$index + 1">{n}</span>
                       </transition-group>
                     </div>
                     <div class="card-item__name" v-else key="2">Full Name</div>
@@ -92,14 +92,14 @@
                   <label for="cardMonth" class="card-item__dateTitle">Expires</label>
                   <label for="cardMonth" class="card-item__dateItem">
                     <transition name="slide-fade-up">
-                      <span v-if="cardMonth" v-bind:key="cardMonth">{{cardMonth}}</span>
+                      <span v-if="cardMonth" v-bind:key="cardMonth">{cardMonth}</span>
                       <span v-else key="2">MM</span>
                     </transition>
                   </label>
                   /
                   <label for="cardYear" class="card-item__dateItem">
                     <transition name="slide-fade-up">
-                      <span v-if="cardYear" v-bind:key="cardYear">{{String(cardYear).slice(2,4)}}</span>
+                      <span v-if="cardYear" v-bind:key="cardYear">{String(cardYear).slice(2,4)}</span>
                       <span v-else key="2">YY</span>
                     </transition>
                   </label>
@@ -144,13 +144,13 @@
               <select class="card-input__input -select" id="cardMonth" v-model="cardMonth" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate">
                 <option value="" disabled selected>Month</option>
                 <option v-bind:value="n < 10 ? '0' + n : n" v-for="n in 12" v-bind:disabled="n < minCardMonth" v-bind:key="n">
-                    {{n < 10 ? '0' + n : n}}
+                    {n < 10 ? '0' + n : n}
                 </option>
               </select>
               <select class="card-input__input -select" id="cardYear" v-model="cardYear" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate">
                 <option value="" disabled selected>Year</option>
                 <option v-bind:value="$index + minCardYear" v-for="(n, $index) in 12" v-bind:key="n">
-                    {{$index + minCardYear}}
+                    {$index + minCardYear}
                 </option>
               </select>
             </div>

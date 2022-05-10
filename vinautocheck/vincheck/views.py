@@ -10,6 +10,9 @@ from django.utils.http import urlsafe_base64_encode
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail, BadHeaderError
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
 from .forms import *
 
@@ -69,6 +72,21 @@ def personalcabinet(request):
     return render(request, 'vincheck/personalcabinet.html')
 
 
+@login_required()
+def check_box(request):
+    return render(request, 'vincheck/check_box.html')
+
+
+@login_required()
+def check_box2(request):
+    return render(request, 'vincheck/check_box2.html')
+
+
+@login_required()
+def form_pay(request):
+    return render(request, 'vincheck/formofpayment.html')
+
+
 # восстановление пароля с помощью почты
 def password_reset_request(request):
     if request.method == "POST":
@@ -104,3 +122,18 @@ def password_reset_request(request):
 def index(request):
     return render(request, 'vincheck/index.html')
 
+
+# def change_password(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(request.user, request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             update_session_auth_hash(request, user)  # Important!
+#             messages.success(request, 'Your password was successfully updated!')
+#             return redirect('change_password')
+#         else:
+#             messages.error(request, 'Please correct the error below.')
+#     else:
+#         form = PasswordChangeForm(request.user)
+#     return render(request, 'accounts/change_password.html', {
+#         'form': form})
