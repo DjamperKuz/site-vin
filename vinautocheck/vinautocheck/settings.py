@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# To change password in user form; Self cabinet try
+# AUTH_USER_MODEL = "users.User"
+# ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.UserForm'
 
 # Application definition
 
@@ -37,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'vincheck.apps.VincheckConfig'
+    'vincheck.apps.VincheckConfig',
 ]
 
 MIDDLEWARE = [
