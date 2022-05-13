@@ -13,6 +13,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.core.cache import cache
 
 from .forms import *
 
@@ -25,6 +26,7 @@ def main_search(request):
         # check whether it's valid:
         if form.is_valid():
             vin = form.cleaned_data
+            cache.set('user_vin', vin['vin'])
             print(vin)
             return HttpResponseRedirect('tovar')
 
@@ -72,14 +74,20 @@ def personalcabinet(request):
     return render(request, 'vincheck/personalcabinet.html')
 
 
+# страница с чекбоксом
 @login_required()
 def check_box(request):
-    return render(request, 'vincheck/check_box.html')
+    vin = cache.get('user_vin')
+    data = {"message": vin}
+    return render(request, 'vincheck/check_box.html', context=data)
 
 
+# страница с чекбоксом 2
 @login_required()
 def check_box2(request):
-    return render(request, 'vincheck/check_box2.html')
+    vin = cache.get('user_vin')
+    data = {"message": vin}
+    return render(request, 'vincheck/check_box2.html', context=data)
 
 
 @login_required()
