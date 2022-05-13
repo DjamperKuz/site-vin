@@ -1,6 +1,6 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordResetConfirmView, INTERNAL_RESET_SESSION_TOKEN
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
@@ -145,3 +145,9 @@ def index(request):
 #         form = PasswordChangeForm(request.user)
 #     return render(request, 'accounts/change_password.html', {
 #         'form': form})
+
+
+class PasswordResetConfirm(PasswordResetConfirmView):
+    form_class = SetPasswordForm
+    template_name = 'vincheck/password_reset_confirm.html'
+
