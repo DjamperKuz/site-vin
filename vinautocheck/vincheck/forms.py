@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, SetPasswordForm
 from django.contrib.auth.models import User
 
 
@@ -43,7 +43,7 @@ class RecoveryPassForm(forms.Form):
     email = forms.CharField(label='', widget=forms.EmailInput(attrs={'class': 'txtb', 'placeholder': 'Почта'}))
 
 
-# class CreateNewPassword(UserCreationForm):
+# class CreateNewPassword(SetPasswordForm):
 #     password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'txtb',
 #                                                                             'placeholder': 'Пароль'}))
 #     password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'txtb',
