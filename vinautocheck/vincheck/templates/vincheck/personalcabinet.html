@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Проверка VIN</title>
+    <title>Личный кабинет</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -43,13 +43,14 @@
                 <div class="pricing-table">
                   <div class="col">
                     <div class="table">
-                      <input type="text" placeholder="Фамилия" class="txtb">
-                      <input type="text" placeholder="Имя" class="txtb">
-                      <input type="text" placeholder="Отчество" class="txtb">
-                      <input type="email" placeholder="Почта" class="txtb">
-                      <input  type="password" name="password" class = "form_input" required placeholder="Новый пароль">
-                      <input  type="password" name="password" class = "form_input" required placeholder="Повторите пароль">
+                        <form class="change_data" method="post" >
+                            {% csrf_token %}
+                      <input type="text" placeholder="Фамилия" class="txtb" value="{{user.last_name}}">
+                      <input type="text" placeholder="Имя" class="txtb" value="{{user.first_name}}" >
+                      <input type="email" placeholder="Почта" class="txtb" value="{{user.email}}">
+                      <a class = "button_pass" href="{% url 'password_reset' %}"> Изменить пароль</a>
                       <input type="submit"  value="Сохранить" class="signup-btn">
+                            </form>
                     </div>
                   </div>
                 </div>
@@ -306,6 +307,12 @@ footer {
     flex:100%;
     margin: auto;
   }
+}
+
+.button_pass{
+  position: relative;
+  float: center;
+  margin-bottom: -7%;
 }
 
 
