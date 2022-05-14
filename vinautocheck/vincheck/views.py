@@ -15,6 +15,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.core.cache import cache
 
+# import main_pars
+
 from .forms import *
 
 
@@ -87,9 +89,10 @@ def check_box(request):
 def check_box2(request):
     vin = cache.get('user_vin')
     data = {"message": vin, "checkbox": 10}
-
+    # main_pars.pars_without_reestor_rb(vin)
     if request.method == "POST":
         checkbox = request.POST.getlist('checkbox_1')
+
         if checkbox == ['checkbox_1']:
             data['checkbox'] = 20
         else:

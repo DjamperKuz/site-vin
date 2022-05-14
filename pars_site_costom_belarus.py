@@ -1,5 +1,5 @@
 import time
-import main
+import main_pars
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -8,10 +8,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def pars_site_customs_belarus(vin):
-    options = main.webdriver.ChromeOptions()
+    options = main_pars.webdriver.ChromeOptions()
     options.add_extension(r"C:\VIN\chromedriver\extension_2_5_1_0.crx")
     options.add_argument(r"--user-data-dir=C:\Users\tomas\AppData\Local\Google\Chrome\User Data\Default")
-    browser = main.get_browser('https://www.customs.gov.by/baza-dannykh-vvezyennogo-avtotransporta/'
+    browser = main_pars.get_browser('https://www.customs.gov.by/baza-dannykh-vvezyennogo-avtotransporta/'
                           'index.php?sphrase_id=157722', options=options)
     time.sleep(20)
 
@@ -80,7 +80,7 @@ def pars_site_customs_belarus(vin):
 
 
 def main_customs():
-    main.save_json(pars_site_customs_belarus(main.vin), 'data_customs_belarus')
+    main_pars.save_json(pars_site_customs_belarus(main_pars.vin), 'data_customs_belarus')
 
 
 if __name__ == "__main__":

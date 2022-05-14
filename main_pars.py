@@ -1,4 +1,4 @@
-"""РџСЂРѕРµРєС‚: СЃР°Р№С‚ СЃ РїРѕРёСЃРєРѕРј Р°РІС‚РѕРјРѕР±РёР»СЊРЅС‹С… РЅРѕРјРµСЂРѕРІ"""
+"""Проект: сайт с поиском автомобильных номеров"""
 import json
 import pars_site_bidfax
 import pars_site_fed_resource
@@ -21,10 +21,10 @@ def get_browser(url, options=None):
 
 def get_options():
     options = webdriver.ChromeOptions()
-    # options.add_argument("--headless") # РІРєР»СЋС‡РµРЅРёРµ С„РѕРЅРѕРІРѕРіРѕ СЂРµР¶РёРјР° СЂР°Р±РѕС‚С‹ Р±СЂР°СѓР·РµСЂР°
-    options.add_argument("--mute-audio")  # РѕС‚РєР»СЋС‡РµРЅРёРµ Р·РІСѓРєР°
+    # options.add_argument("--headless") # включение фонового режима работы браузера
+    options.add_argument("--mute-audio")  # отключение звука
     options.add_argument("""user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
-                        (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36""")  # РѕРїС†РёРё РґР»СЏ РґР»СЏ РІСЃРµС… РїР°СЂСЃРµСЂРѕРІ
+                        (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36""")  # опции для для всех парсеров
 
 
 def save_json(dict_json, name_file):
@@ -32,19 +32,16 @@ def save_json(dict_json, name_file):
         json.dump(dict_json, outfile, separators=(',', ': '), indent=4, ensure_ascii=False)
 
 
-script, vin = argv
-
-
-def main():
-    print(vin)
-    Thread(target=pars_site_bidfax.main_bidfax).start()
+def pars_without_reestor_rb(vin):
+    # Thread(target=pars_site_bidfax.main_bidfax).start()
     # Thread(target=pars_site_autostat.main_autostat).start()
     # Thread(target=pars_site_gibdd_no_api.main_gibdd).start()
-    Thread(target=pars_site_gost.main_gost).start()
+    Thread(target=pars_site_gost.main_gost(vin)).start()
     # Thread(target=pars_site_costom_belarus.main_customs).start()
     # Thread(target=pars_site_vinfax.main_vinfax).start()
     # Thread(target=pars_site_fed_resource.main_fed_res).start()
 
 
-if __name__ == "__main__":
-    main()
+vin = 'XWEGW413BG0000999'  # потом убрать эту строчку
+pars_without_reestor_rb(vin)
+

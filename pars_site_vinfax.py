@@ -1,4 +1,4 @@
-import main
+import main_pars
 import time
 import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
@@ -205,7 +205,7 @@ def pars_site_vinfax(vin):
 
 
 def main_vinfax():
-    main.save_json(pars_site_vinfax(main.vin), 'data_vinfax')
+    main_pars.save_json(pars_site_vinfax(main_pars.vin), 'data_vinfax')
 
 
 if __name__ == "__main__":

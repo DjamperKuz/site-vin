@@ -1,5 +1,5 @@
 import time
-import main
+import main_pars
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -8,25 +8,25 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def pars_site_gost(vin):
-    options = main.webdriver.ChromeOptions()
-    options.add_argument("--headless")  # РІРєР»СЋС‡РµРЅРёРµ С„РѕРЅРѕРІРѕРіРѕ СЂРµР¶РёРјР° СЂР°Р±РѕС‚С‹ Р±СЂР°СѓР·РµСЂР°
+    options = main_pars.webdriver.ChromeOptions()
+    options.add_argument("--headless")  # включение фонового режима работы браузера
     try:
-        browser = main.get_browser('https://easy.gost.ru/', options)
+        browser = main_pars.get_browser('https://easy.gost.ru/', options)
     except Exception as ex:
         car_info_gost = {
             'success': 'False',
-            'info_gost': 'РЎР°Р№С‚ РЅРµ СЂР°Р±РѕС‚Р°РµС‚',
+            'info_gost': 'Сайт не работает',
         }
         return car_info_gost
 
     try:
         WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.ID, "btnFindVin")))
-        elem = browser.find_element(By.ID, 'findVin')  # РІСЃС‚Р°РІР»СЏРµРј VIN РІ СЃС‚СЂРѕРєСѓ
+        elem = browser.find_element(By.ID, 'findVin')  # вставляем VIN в строку
         elem.send_keys(vin + Keys.RETURN)
     except Exception as ex:
         car_info_gost = {
             'success': 'False',
-            'info_gost': 'РЎР°Р№С‚ РЅРµ СЂР°Р±РѕС‚Р°РµС‚',
+            'info_gost': 'Сайт не работает',
         }
         return car_info_gost
 
@@ -48,17 +48,16 @@ def pars_site_gost(vin):
         except Exception as ex:
             car_info_gost = {
                 'success': 'True',
-                'info_gost': 'РќРµ РЅР°Р№РґРµРЅ СЃСЂРµРґРё РѕС‚Р·С‹РІРЅС‹С… РєР°РјРїР°РЅРёР№',
+                'info_gost': 'Не найден среди отзывных кампаний',
             }
 
         return car_info_gost
 
-    return get_content(pagesource_gost)  # СЂР°Р±РѕС‚Р°РµС‚
+    return get_content(pagesource_gost)  # работает
 
 
-def main_gost():
-    main.save_json(pars_site_gost(main.vin), 'data_gost')
+def main_gost(vin):
+    main_pars.save_json(pars_site_gost(vin), 'data_gost')
 
 
-if __name__ == "__main__":
-    main_gost()
+

@@ -1,4 +1,4 @@
-import main
+import main_pars
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -94,7 +94,7 @@ def pars_site_autoastat(vin):
 
 
 def main_autostat():
-    main.save_json(pars_site_autoastat(main.vin), 'data_autostat')
+    main_pars.save_json(pars_site_autoastat(main_pars.vin), 'data_autostat')
 
 
 if __name__ == "__main__":

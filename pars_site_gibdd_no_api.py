@@ -1,5 +1,5 @@
 import time
-import main
+import main_pars
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -8,11 +8,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def pars_site_gibdd(vin):  # парсинг сайта ГИБДД, возвращает dict с информацией о машине
-    options = main.webdriver.ChromeOptions()
+    options = main_pars.webdriver.ChromeOptions()
     options.add_argument("--mute-audio")  # отключение звука
     # options.add_argument("--headless")  # включение фонового режима работы браузера
     try:  # запуск и проверка сайта на работоспособность
-        browser = main.get_browser('https://xn--90adear.xn--p1ai/check/auto', options)
+        browser = main_pars.get_browser('https://xn--90adear.xn--p1ai/check/auto', options)
     except Exception as ex:
         car_info_gibdd = {'info_gibdd': 'Сайт не работает',
                           'error_gibdd': str(ex)
@@ -139,7 +139,7 @@ def pars_site_gibdd(vin):  # парсинг сайта ГИБДД, возвра�
 
 
 def main_gibdd():
-    main.save_json(pars_site_gibdd(main.vin), 'data_gibdd_no_api')
+    main_pars.save_json(pars_site_gibdd(main_pars.vin), 'data_gibdd_no_api')
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 import time
-import main
+import main_pars
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver import Keys
@@ -20,7 +20,7 @@ def pars_site_fed_res(vin):
 
     # пробуем получить информацию, эмулируя клики и возврат данных
     try:
-        browser = main.get_browser('https://www.reestr-zalogov.ru/search/index', options=options)
+        browser = main_pars.get_browser('https://www.reestr-zalogov.ru/search/index', options=options)
 
         WebDriverWait(browser, 5).until(
             ec.element_to_be_clickable((By.LINK_TEXT, 'По информации о предмете залога'))).click()
@@ -73,7 +73,7 @@ def pars_site_fed_res(vin):
 
 
 def main_fed_res():
-    main.save_json(pars_site_fed_res(main.vin), 'fed_resource')
+    main_pars.save_json(pars_site_fed_res(main_pars.vin), 'fed_resource')
 
 
 if __name__ == '__main__':
