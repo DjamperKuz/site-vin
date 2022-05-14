@@ -12,26 +12,29 @@
       rel="stylesheet">
 </head>
 <body>
-  <div class='button_back'>
-    <a href="{% url 'tovar' %}" class="back">Назад</a>
-  </div>
-  <div class="checkbox">
-    <div class='otchet'>
-      <p>Онлайн отчет</p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class='button_back'>
+      <a href="{% url 'tovar' %}" class="back">Назад</a>
     </div>
-      <input class="checkbox_input" type="checkbox" id="checkbox_1" >
-    <label class="checkbox_label" for="checkbox_1">Проверить реестр залогов РБ</label>
-    <p>VIN:{{ message }}</p>
-  </div>
-  <div class="itogo">
-    <p>Итого<сумма></p>
-  </div>
-  <div class='button_oplat'>
-    <a href="{% url 'form_of_payment' %}" class="oplata">Оплатить картой</a>
-  </div>
-  <div class="car">
-    <img src="{% static 'vincheck/images/car.png' %}" class="go">
-  </div>
+    <div class="checkbox">
+      <div class='otchet'>
+        <p>Онлайн отчет</p>
+      </div>
+        <input class="checkbox_input" type="checkbox" value="checkbox_1" id="checkbox_1" name="checkbox_1">
+        <label class="checkbox_label" for="checkbox_1">Проверить реестр залогов РБ</label>
+      <p>VIN:{{ message }}</p>
+    </div>
+    <div class="itogo">
+      <p>Итого:{{ checkbox }}</p>
+    </div>
+    <div class='button_oplat'>
+      <button type="submit" class="oplata">Оплатить картой</button>
+    </div>
+    <div class="car">
+      <img src="{% static 'vincheck/images/car.png' %}" class="go">
+    </div>
+  </form>
 </body>
 </html>
 <style media="screen">
