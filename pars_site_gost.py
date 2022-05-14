@@ -9,24 +9,24 @@ from selenium.webdriver.support import expected_conditions as EC
 
 def pars_site_gost(vin):
     options = main_pars.webdriver.ChromeOptions()
-    options.add_argument("--headless")  # включение фонового режима работы браузера
+    options.add_argument("--headless")  # РІРєР»СЋС‡РµРЅРёРµ С„РѕРЅРѕРІРѕРіРѕ СЂРµР¶РёРјР° СЂР°Р±РѕС‚С‹ Р±СЂР°СѓР·РµСЂР°
     try:
         browser = main_pars.get_browser('https://easy.gost.ru/', options)
     except Exception as ex:
         car_info_gost = {
             'success': 'False',
-            'info_gost': 'Сайт не работает',
+            'info_gost': 'РЎР°Р№С‚ РЅРµ СЂР°Р±РѕС‚Р°РµС‚',
         }
         return car_info_gost
 
     try:
         WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.ID, "btnFindVin")))
-        elem = browser.find_element(By.ID, 'findVin')  # вставляем VIN в строку
+        elem = browser.find_element(By.ID, 'findVin')  # РІСЃС‚Р°РІР»СЏРµРј VIN РІ СЃС‚СЂРѕРєСѓ
         elem.send_keys(vin + Keys.RETURN)
     except Exception as ex:
         car_info_gost = {
             'success': 'False',
-            'info_gost': 'Сайт не работает',
+            'info_gost': 'РЎР°Р№С‚ РЅРµ СЂР°Р±РѕС‚Р°РµС‚',
         }
         return car_info_gost
 
@@ -48,12 +48,12 @@ def pars_site_gost(vin):
         except Exception as ex:
             car_info_gost = {
                 'success': 'True',
-                'info_gost': 'Не найден среди отзывных кампаний',
+                'info_gost': 'РќРµ РЅР°Р№РґРµРЅ СЃСЂРµРґРё РѕС‚Р·С‹РІРЅС‹С… РєР°РјРїР°РЅРёР№',
             }
 
         return car_info_gost
 
-    return get_content(pagesource_gost)  # работает
+    return get_content(pagesource_gost)  # СЂР°Р±РѕС‚Р°РµС‚
 
 
 def main_gost(vin):

@@ -15,7 +15,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.core.cache import cache
 
-# import main_pars
+# from main_pars import pars_without_reestor_rb - какая-то непонятная ошибка с декодером
 
 from .forms import *
 

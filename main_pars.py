@@ -1,4 +1,3 @@
-"""ѕроект: сайт с поиском автомобильных номеров"""
 import json
 import pars_site_bidfax
 import pars_site_fed_resource
