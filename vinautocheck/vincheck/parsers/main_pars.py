@@ -1,6 +1,6 @@
 import json
 from .pars_site_bidfax import main_bidfax
-# import .pars_site_fed_resource
+# from .pars_site_fed_resource import main_fed_resource
 from .pars_site_gost import main_gost
 from .pars_site_autostat import main_autostat
 # import .pars_site_costom_belarus
@@ -28,6 +28,6 @@ def pars_without_reestor_rb(vin):
     Thread(target=main_vinfax(vin)).start()
     Thread(target=main_gibdd_api(vin)).start()
     # Thread(target=pars_site_costom_belarus.main_customs).start()
-    # Thread(target=pars_site_fed_resource.main_fed_res).start()
+    # Thread(target=pars_site_fed_resource.main_fed_resource).start()
     # Thread(target=pars_site_mvd_rb.main_mvd_rb(vin)).start()  # запускать только на сервере рб из-за включения впн
 
