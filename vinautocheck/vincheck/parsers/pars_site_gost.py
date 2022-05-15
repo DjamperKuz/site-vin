@@ -1,5 +1,6 @@
 import time
-import main_pars
+from .pars_settings import *
+from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -8,10 +9,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def pars_site_gost(vin):
-    options = main_pars.webdriver.ChromeOptions()
+    options = webdriver.ChromeOptions()
     options.add_argument("--headless")  # включение фонового режима работы браузера
     try:
-        browser = main_pars.get_browser('https://easy.gost.ru/', options)
+        browser = get_browser('https://easy.gost.ru/', options)
     except Exception as ex:
         car_info_gost = {
             'success': 'False',
@@ -57,7 +58,7 @@ def pars_site_gost(vin):
 
 
 def main_gost(vin):
-    main_pars.save_json(pars_site_gost(vin), 'data_gost')
+    save_json(pars_site_gost(vin), 'data_gost')
 
 
 

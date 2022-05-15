@@ -1,6 +1,6 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.views import LoginView, PasswordResetConfirmView, INTERNAL_RESET_SESSION_TOKEN
+from django.contrib.auth.views import LoginView, PasswordResetConfirmView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
@@ -10,12 +10,9 @@ from django.utils.http import urlsafe_base64_encode
 from django.views.generic import CreateView
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail, BadHeaderError
-from django.contrib import messages
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
 from django.core.cache import cache
 
-# from main_pars import pars_without_reestor_rb - какая-то непонятная ошибка с декодером
+from .parsers.main_pars import pars_without_reestor_rb
 
 from .forms import *
 
@@ -89,7 +86,7 @@ def check_box(request):
 def check_box2(request):
     vin = cache.get('user_vin')
     data = {"message": vin, "checkbox": 10}
-    # main_pars.pars_without_reestor_rb(vin)
+    pars_without_reestor_rb(vin)
     if request.method == "POST":
         checkbox = request.POST.getlist('checkbox_1')
 
@@ -141,22 +138,6 @@ def password_reset_request(request):
 
 def index(request):
     return render(request, 'vincheck/index.html')
-
-
-# def change_password(request):
-#     if request.method == 'POST':
-#         form = PasswordChangeForm(request.user, request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             update_session_auth_hash(request, user)  # Important!
-#             messages.success(request, 'Your password was successfully updated!')
-#             return redirect('change_password')
-#         else:
-#             messages.error(request, 'Please correct the error below.')
-#     else:
-#         form = PasswordChangeForm(request.user)
-#     return render(request, 'accounts/change_password.html', {
-#         'form': form})
 
 
 class PasswordResetConfirm(PasswordResetConfirmView):

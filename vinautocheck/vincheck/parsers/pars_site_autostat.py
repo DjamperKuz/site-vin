@@ -1,4 +1,4 @@
-import main_pars
+from .pars_settings import save_json
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -15,7 +15,7 @@ def pars_site_autoastat(vin):
         }
     }
     try:  # запуск и проверка сайта на работоспособность
-        browser = wier_webdriver.Chrome(r"C:\VIN\chromedriver\chromedriver.exe",
+        browser = wier_webdriver.Chrome(r"C:/VIN/vinautocheck/vincheck/chromedriver/chromedriver.exe",
                                         seleniumwire_options=proxy_options)
         browser.get(f'https://autoastat.com/en/')
         browser.set_page_load_timeout(20)
@@ -93,9 +93,6 @@ def pars_site_autoastat(vin):
     return get_content(pagesource_autoastat)  # работает
 
 
-def main_autostat():
-    main_pars.save_json(pars_site_autoastat(main_pars.vin), 'data_autostat')
+def main_autostat(vin):
+    save_json(pars_site_autoastat(vin), 'data_autostat')
 
-
-if __name__ == "__main__":
-    main_autostat()

@@ -12,19 +12,19 @@ def pars_site_av100ru(vin, api):
         full_info_vin = requests.get(url=f'https://data.av100.ru/api.ashx?key={api}&vin={vin}').json()
         if full_info_vin["error"]:
             if full_info_vin["error_msg"] == 'Доступ истек':
-                with open("data/av100ru.json", "w") as file:
+                with open("../../../data/av100ru.json", "w") as file:
                     json.dump(full_info_vin, file, indent=4, ensure_ascii=False, encoding='utf-8')
                 exit("Доступ истек")
             elif full_info_vin["error_msg"] == 'Нет прав на запрошенный метод.':
-                with open("data/av100ru.json", "w") as file:
+                with open("../../../data/av100ru.json", "w") as file:
                     json.dump(full_info_vin, file, indent=4, ensure_ascii=False, encoding='utf-8')
                 exit("Нет прав на запрошенный метод.")
             elif full_info_vin["error_msg"] == 'Пользователь не найден.':
-                with open("data/av100ru.json", "w") as file:
+                with open("../../../data/av100ru.json", "w") as file:
                     json.dump(full_info_vin, file, indent=4, ensure_ascii=False, encoding='utf-8')
                 exit("Пользователь не найден.")
             elif full_info_vin["error_msg"] == 'Задан не коректный VIN.':
-                with open("data/av100ru.json", "w") as file:
+                with open("../../../data/av100ru.json", "w") as file:
                     json.dump(full_info_vin, file, indent=4, ensure_ascii=False, encoding='utf-8')
                 exit("Задан не корректный VIN.")
     except Exception as ex:
@@ -48,7 +48,7 @@ def pars_site_av100ru(vin, api):
             # если в течении 35 секунд информацию не удалось получить, сохраняется информация с ошибкой и программа
             # заканчивается с ошибкой тайм-аут
             if count_try >= 8:
-                with open("data/av100ru.json", "w") as file:
+                with open("../../../data/av100ru.json", "w") as file:
                     json.dump(req, file, indent=4, ensure_ascii=False, encoding='utf-8')
                 exit("Time out")
 
@@ -69,7 +69,7 @@ def pars_site_av100ru(vin, api):
 
     # записываем готовый запрос в json file
     try:
-        with open("data/av100ru.json", "w", encoding='utf-8') as file:
+        with open("../../../data/av100ru.json", "w", encoding='utf-8') as file:
             json.dump(requests.get(f'https://data.av100.ru/api.ashx?key={api}&vin={vin}').json, file, indent=4,
                       ensure_ascii=False)
     except Exception as ex:
