@@ -83,7 +83,10 @@ def check_box(request):
 
 @login_required()
 def online_document(request):
-    return render(request, 'vincheck/onlinedocument.html')
+    vin = cache.get('user_vin')
+    data_json = pars_without_reestor_rb(vin)
+
+    return render(request, 'vincheck/onlinedocument.html', context=data_json)
 
 
 # страница с чекбоксом 2
@@ -91,7 +94,6 @@ def online_document(request):
 def check_box2(request):
     vin = cache.get('user_vin')
     data = {"message": vin, "checkbox": 10}
-    pars_without_reestor_rb(vin)
     if request.method == "POST":
         checkbox = request.POST.getlist('checkbox_1')
 
