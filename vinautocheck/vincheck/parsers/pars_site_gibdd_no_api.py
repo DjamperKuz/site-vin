@@ -141,5 +141,3 @@ def pars_site_gibdd(vin):  # парсинг сайта ГИБДД, возвра�
 
 def main_gibdd(vin):
     save_json(pars_site_gibdd(vin), 'data_gibdd_no_api')
-
-

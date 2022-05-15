@@ -20,7 +20,7 @@ def get_options():
 
 def pars_without_reestor_rb(vin):
     Thread(target=main_bidfax(vin)).start()
-    Thread(target=main_autostat(vin)).start()
+    #  Thread(target=main_autostat(vin)).start()
     Thread(target=main_gibdd(vin)).start()
     Thread(target=main_gost(vin)).start()
     Thread(target=main_vinfax(vin)).start()

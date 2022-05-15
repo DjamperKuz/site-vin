@@ -1,4 +1,4 @@
-from pars_settings import save_json
+from .pars_settings import save_json
 import time
 import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
