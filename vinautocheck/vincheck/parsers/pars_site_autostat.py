@@ -11,7 +11,7 @@ def pars_site_autoastat(vin):
     # подключение прокси
     proxy_options = {
         'proxy': {
-            'https': 'http://rD2jWa:mkHcvE@138.59.206.220:9409'
+            'https': 'http://rD2jWa:mkHcvE@138.59.206.220:9409'  # нужно поменять прокси
         }
     }
     try:  # запуск и проверка сайта на работоспособность

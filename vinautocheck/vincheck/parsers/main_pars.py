@@ -1,11 +1,11 @@
 import json
-# import pars_site_bidfax
+from .pars_site_bidfax import main_bidfax
 # import pars_site_fed_resource
 from .pars_site_gost import main_gost
 from .pars_site_autostat import main_autostat
 # import pars_site_costom_belarus
-# import pars_site_gibdd_no_api
-# import pars_site_vinfax
+from .pars_site_gibdd_no_api import main_gibdd
+from .pars_site_vinfax import main_vinfax
 from threading import Thread
 from selenium import webdriver
 
@@ -19,12 +19,11 @@ def get_options():
 
 
 def pars_without_reestor_rb(vin):
-    print('pars_without_reestor_rb')
-    # Thread(target=pars_site_bidfax.main_bidfax).start()
+    Thread(target=main_bidfax(vin)).start()
     Thread(target=main_autostat(vin)).start()
-    # Thread(target=pars_site_gibdd_no_api.main_gibdd).start()
+    Thread(target=main_gibdd(vin)).start()
     Thread(target=main_gost(vin)).start()
+    Thread(target=main_vinfax(vin)).start()
     # Thread(target=pars_site_costom_belarus.main_customs).start()
-    # Thread(target=pars_site_vinfax.main_vinfax).start()
     # Thread(target=pars_site_fed_resource.main_fed_res).start()
 

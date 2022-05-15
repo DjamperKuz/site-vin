@@ -1,5 +1,5 @@
 import time
-import main_pars
+from pars_settings import *
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 def pars_site_bidfax(vin):  # парсинг сайта bidfax, возвращает dict с информацией о машине
     try:  # запуск и проверка сайта на работоспособность
-        browser = main_pars.get_browser('https://bidfax.info/')
+        browser = get_browser('https://bidfax.info/')
     except Exception as ex:
         car_info_bidfax = {
             'success': 'False',
@@ -72,9 +72,6 @@ def pars_site_bidfax(vin):  # парсинг сайта bidfax, возвраща
     return get_content(pagesource_bidfax)  # работает
 
 
-def main_bidfax():
-    main_pars.save_json(pars_site_bidfax(main_pars.vin), 'data_bidfax')
+def main_bidfax(vin):
+    save_json(pars_site_bidfax(vin), 'data_bidfax')
 
-
-if __name__ == "__main__":
-    main_bidfax()

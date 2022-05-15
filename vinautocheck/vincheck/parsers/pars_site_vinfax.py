@@ -1,10 +1,10 @@
-import main_pars
+from pars_settings import save_json
 import time
 import undetected_chromedriver as uc
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-# testing
+
 
 def pars_site_vinfax(vin):
     try:
@@ -204,9 +204,6 @@ def pars_site_vinfax(vin):
         driver.quit()
 
 
-def main_vinfax():
-    main_pars.save_json(pars_site_vinfax(main_pars.vin), 'data_vinfax')
+def main_vinfax(vin):
+    save_json(pars_site_vinfax(vin), 'data_vinfax')
 
-
-if __name__ == "__main__":
-    main_vinfax()
