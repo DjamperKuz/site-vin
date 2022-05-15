@@ -6,6 +6,7 @@ from .pars_site_autostat import main_autostat
 # import .pars_site_costom_belarus
 # from .pars_site_mvd_rb import main_mvd_rb # запускать только на сервере рб из-за включения впн
 from .pars_site_gibdd_no_api import main_gibdd
+from .pars_site_gibbd_api import main_gibdd_api
 from .pars_site_vinfax import main_vinfax
 from threading import Thread
 from selenium import webdriver
@@ -25,6 +26,7 @@ def pars_without_reestor_rb(vin):
     Thread(target=main_gibdd(vin)).start()
     Thread(target=main_gost(vin)).start()
     Thread(target=main_vinfax(vin)).start()
+    Thread(target=main_gibdd_api(vin)).start()
     # Thread(target=pars_site_costom_belarus.main_customs).start()
     # Thread(target=pars_site_fed_resource.main_fed_res).start()
     # Thread(target=pars_site_mvd_rb.main_mvd_rb(vin)).start()  # запускать только на сервере рб из-за включения впн
