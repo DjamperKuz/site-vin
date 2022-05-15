@@ -81,6 +81,11 @@ def check_box(request):
     return render(request, 'vincheck/check_box.html', context=data)
 
 
+@login_required()
+def online_document(request):
+    return render(request, 'vincheck/onlinedocument.html')
+
+
 # страница с чекбоксом 2
 @login_required()
 def check_box2(request):

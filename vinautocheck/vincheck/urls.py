@@ -11,7 +11,8 @@ urlpatterns = [
     path('tovar/', tovar, name='tovar'),
     path('personalcabinet/', personalcabinet, name='personalcabinet'),
     # path('recoverypassword/', RecoveryPassword.as_view(), name='recoverypassword'),
-    path('checkbox/', check_box, name='checkbox'),
+    path('tovar/checkbox/', check_box, name='checkbox'),
+    path('tovar/checkbox/onlinedocument', online_document, name='online_document'),
     path('checkbox2/', check_box2, name='checkbox2'),
     path('form_of_payment/', form_pay, name='form_of_payment'),
 

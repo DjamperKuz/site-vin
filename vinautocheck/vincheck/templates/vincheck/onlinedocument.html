@@ -1,0 +1,469 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн-отчёт</title>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Montserrat:wght@400;600;700&family=Roboto&family=Rubik:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header_container">
+                <div class="header_content">
+                    <a href="{% url 'main_search' %}" class="button_login">Главная</a>
+                    <a href="#" class="action-print" onclick="javascript:window.print()">Скачать</a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="main_containernarrow">
+                <div class="main_content">
+                  <div class="main_form">
+                      <form class="vin">
+                            <h1>Название машины</h1>
+                              <p>Отчёт от "дата"</p>
+                        </form>
+                    </div>
+                    <div class="_2qTXf">
+                    <dl class="_2qTXf_left">
+                      <dt>VIN</dt>
+                      <dd>XW8AN2XXXFXXXXXXX</dd>
+                      <dt>Госномер</dt>
+                      <dd>Номер</dd>
+                      <dt>Номер кузова</dt>
+                      <dd>Номер</dd>
+                      <dt>Номер двигателя</dt>
+                      <dd>Номер</dd>
+                      <dt>Номер ПТС</dt>
+                      <dd>Номер</dd>
+                      <dt>Номер СТС</dt>
+                      <dd>Номер</dd>
+                    </dl>
+                    <dl class="_2qTXf_right">
+                      <dt>Год выпуска</dt>
+                      <dd>Год</dd>
+                      <dt>Тип ТС</dt>
+                      <dd>Тип</dd>
+                      <dt>Цвет</dt>
+                      <dd>Цвет</dd>
+                      <dt>Объём двигателя</dt>
+                      <dd>Объём</dd>
+                      <dt>Мощность</dt>
+                      <dd>Мощность</dd>
+                      <dt>Последний пробег</dt>
+                      <dd>Пробег</dd>
+                    </dl>
+                    </div>
+                    <div class="_1qtxf">
+                      <p>При осмотре автомобиля всегда сверяйте данные ПТС и VIN с указанными в отчёте.</p>
+                      <p>Рекомендуем перед покупкой автомобиля купить отчёт повторно, чтобы получить актуальную информацию.</p>
+                    </div>
+            <div class="main_form_2">
+              <form class="vin">
+                    <h1>Недостатки</h1>
+                      <h2>Ограничения на регистрацию</h2>
+                      <p>Запрет регистрационных действий на машину накладывается, если у автовладельца есть неоплаченные штрафы и налоги, либо если имущество стало предметом спора.</p>
+                </form>
+            </div>
+            <dl class="_2qTXf_left">
+              <dt>Вид ограничения</dt>
+              <dd></dd>
+              <dt>Организация</dt>
+              <dd></dd>
+              <dt>Регион</dt>
+              <dd></dd>
+            </dl>
+            <div class="main_form_2">
+              <form class="vin">
+                      <h2>В залоге</h2>
+                      <p>До "дата"</p>
+                      <p>Если заложенное авто продадут без согласия банка, сделку могут признать недействительной, а машину — забрать. Перед покупкой убедитесь, что продавец погасил долг.</p>
+                </form>
+            </div>
+            <dl class="_2qTXf_left">
+              <dt>Источники</dt>
+              <dd></dd>
+            </dl>
+            <div class="main_form_2">
+              <form class="vin">
+                      <h2>Был в ДТП</h2>
+                      <p>"дата"</p>
+                </form>
+            </div>
+            <dl class="_2qTXf_left">
+              <dt>Тип происшествия</dt>
+              <dd></dd>
+              <dt>Состояние авто после столкновения</dt>
+              <dd></dd>
+            </dl>
+            <div class="main_form_2">
+              <form class="vin">
+                      <h2>Розыск</h2>
+                      <p>Покупка разыскиваемого автомобиля грозит тем, что его отберут в ГИБДД при регистрации, и пока будет идти следствие, а это может затянуться на долгий срок, автомобиль будет стоять на штрафплощадке.</p>
+                </form>
+            </div>
+            <dl class="_2qTXf_left">
+              <dt></dt>
+              <dd></dd>
+              <dt></dt>
+              <dd></dd>
+            </dl>
+            <form class="vin">
+                    <h2>Разрешение на работу в такси</h2>
+                    <p>Данные представлены из региональных баз по регистрации автомобиля в качестве такси.</p>
+              </form>
+          </div>
+          <dl class="_2qTXf_left">
+            <dt></dt>
+            <dd></dd>
+            <dt></dt>
+            <dd></dd>
+          </dl>
+            <div class="main_form_2">
+              <form class="vin">
+                    <h1>Преимущества</h1>
+                    <h2></h2>
+                    <p></p>
+              </form>
+          </div>
+          <dl class="_2qTXf_left">
+            <dt></dt>
+            <dd></dd>
+            <dt></dt>
+            <dd></dd>
+            <dt></dt>
+            <dd></dd>
+          </dl>
+          <div class="main_form_2">
+            <form class="vin">
+                  <h1>Прочее</h1>
+                    <h2>Электронный ПТС</h2>
+                  <p></p>
+            </form>
+        </div>
+        <div class="_2qTXf">
+        <dl class="_2qTXf_left">
+          <dt>Утилизационный сбор</dt>
+          <dd></dd>
+          <dt>Таможеное оформление</dt>
+          <dd></dd>
+          <dt>Таможенные ограничения</dt>
+          <dd></dd>
+        </DL>
+          <dl class="_2qTXf_right">
+          <dt>Прочие ограничения</dt>
+          <dd></dd>
+          <dt>Последнее регистрационное действие</dt>
+          <dd></dd>
+        </dl>
+      </div>
+        <div class="main_form_2">
+          <form class="vin">
+            <h2>Техосмотры</h2>
+          <p>В данном блоке отображаются данные о прохождении техосмотра на основании данных диагностических карт ТС.</p>
+        <p>Срок прохождения технического осмотра для автомобилей категории «B»:</p>
+          <p> — первые четыре года — не требуется;</p>
+          <p> — возраст от 4 до 10 лет — каждые 2 года;</p>
+          <p> — старше 10 лет — ежегодно.</p>
+  </form>
+</div>
+<dl class="_2qTXf_left">
+  <h3>Дата</h3>
+  <dt>Пробег</dt>
+  <dd>"км</dd>
+  <dt>Действителен до</dt>
+    <dd>"дата"</dd>
+    <h3></h3>
+    <dt></dt>
+    <dd></dd>
+    <dt></dt>
+      <dd></dd>
+</dl>
+      </div>
+    </div>
+ </div>
+        </main>
+</body>
+<style media="screen">
+  *,
+  *::before,
+  *::after {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      box-sizing: border-box;
+  }
+  a {
+      text-decoration: none;
+  }
+  html, body {
+      height: 100%;
+      background-color: #ddeefc;
+  }
+   [class*="_container"] {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+
+  }
+  [class*="_containernarrow"] {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 15px;
+
+  }
+  h1{
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px;
+  }
+  body {
+    font-family: "montserrat",sans-serif;
+    background-color: #ddeefc;
+  }
+
+  .wrapper {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+  }
+  header {
+      background-color: #ddeefc;
+
+  }
+  .header_container {
+      padding-top: 30px;
+      padding-bottom: 80px;
+  }
+  .header_content {
+  }
+  .button_login {
+      background: #f43648;
+      border-radius: 5px;
+      color: white;
+      font-family: "Montserrat";
+      font-size: 17px;
+      font-weight: 600;
+      padding: 10px 30px 10px 30px;
+      position: relative;
+      float: right;
+      text-align: center;
+  }
+  .action-print{
+    background: #d0e3f7;
+    border-radius: 5px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 30px 10px 30px;
+    position: relative;
+    float: right;
+    text-align: center;
+  }
+  main {
+      background-color: #ddeefc;
+  }
+  .main_containernarrow {
+
+  }
+  .main_content {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+  }
+  ._1qtxf{
+    box-sizing: border-box;
+    padding: 24PX;
+    background-color: #d0e3f7;
+    border-radius:24PX;
+    display: grid;
+  }
+  ._2qTXf_left {
+	margin: 0 0 0px 0;
+	overflow: hidden;
+  }
+  ._2qTXf_left dt {
+	margin: 0;
+	padding: 5px 0;
+	width: 150px;
+	float: left;
+	clear: both;
+	color: #808d9a;
+  }
+  ._2qTXf_left dd {
+	margin: 0 0 0 150px;
+	padding: 5px 10px;
+  }
+  ._2qTXf_right {
+	margin: 0 0 20px 0;
+	overflow: hidden;
+  }
+  ._2qTXf_right dt {
+	margin: 0;
+	padding: 5px 0;
+	width: 150px;
+	float: left;
+	clear: both;
+	color: #808d9a;
+  }
+  ._2qTXf_right dd {
+	margin: 0 0 0 150px;
+	padding: 5px 10px;
+  }
+  ._2qTXf {
+	overflow: hidden;
+  padding: 30px 20px 20px 30px;
+  border-radius: 60px;
+  display: grid;
+  grid-template-columns: 60% 50%;
+  grid-row-gap: 30px;
+  /*margin: auto;*/
+  text-align: left;
+  }
+
+  @media (max-width: 992.98px){
+      ._2qTXf{
+          grid-template-columns: 40% 50%;
+          font-size: 11px;
+      }
+  }
+  @media (max-width: 767.98px){
+      ._2qTXf{
+          grid-template-columns: 100%;
+          margin: auto;
+          font-size: 10px;
+      }
+  }
+  @media  screen and (max-width:980px) {
+    ._2qTXf{
+      flex:50%;
+    }
+  }
+
+</style>
+<style media="print">
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    background-color: #ddeefc;
+}
+a {
+    text-decoration: none;
+}
+ [class*="_container"] {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+
+}
+[class*="_containernarrow"] {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 15px;
+
+}
+h1{
+  text-transform: uppercase;
+  text-align: center;
+  padding: 5px;
+}
+body {
+  font-family: "montserrat",sans-serif;
+  background-color: #ddeefc;
+}
+
+.wrapper {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+header {
+    display: none;
+
+}
+.header_container {
+    display: none;
+}
+.header_content {
+}
+main {
+    background-color: #ddeefc;
+}
+.main_containernarrow {
+
+}
+.main_content {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+._1qtxf{
+  box-sizing: border-box;
+  padding: 24PX;
+  background-color: #d0e3f7;
+  border-radius:24PX;
+  display: grid;
+}
+._2qTXf_left {
+margin: 0 0 0px 0;
+overflow: hidden;
+}
+._2qTXf_left dt {
+margin: 0;
+padding: 5px 0;
+width: 150px;
+float: left;
+clear: both;
+color: #808d9a;
+}
+._2qTXf_left dd {
+margin: 0 0 0 150px;
+padding: 5px 10px;
+}
+._2qTXf_right {
+margin: 0 0 20px 0;
+overflow: hidden;
+}
+._2qTXf_right dt {
+margin: 0;
+padding: 5px 0;
+width: 150px;
+float: left;
+clear: both;
+color: #808d9a;
+}
+._2qTXf_right dd {
+margin: 0 0 0 150px;
+padding: 5px 10px;
+}
+._2qTXf {
+overflow: hidden;
+padding: 30px 20px 20px 30px;
+border-radius: 60px;
+display: grid;
+grid-template-columns: 60% 50%;
+grid-row-gap: 30px;
+/*margin: auto;*/
+text-align: left;
+}
+</style>
+</html>
