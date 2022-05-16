@@ -15,6 +15,7 @@ urlpatterns = [
     path('tovar/checkbox/onlinedocument', online_document, name='online_document'),
     path('checkbox2/', check_box2, name='checkbox2'),
     path('form_of_payment/', form_pay, name='form_of_payment'),
+    path('my_inf/', my_inf, name='my_inf'),
 
     # смена пароля с помощью почты
     path("password-reset/", password_reset_request, name="password_reset"),

@@ -20,10 +20,10 @@
             <div class="header_container">
                 <div class="header_content">
                   <div class="dropdown">
-                    <button class="dropbtn">Мои данные</button>
+                    <button class="dropbtn">Мои отчеты</button>
                     <div class="dropdown-content">
                       <a href="{% url 'main_search' %}">Главная</a>
-                      <a href="{% url 'my_inf' %}">Мои отчёты</a>
+                      <a href="{% url 'personalcabinet'%}">Мои данные</a>
                       <a href="{% url 'logout' %}">Выход</a>
                     </div>
                   </div>
@@ -33,29 +33,14 @@
               <main>
                   <div class="main_containernarrow">
                       <div class="main_content">
-                        <h1>Личный кабинет</h1>
+                        <h1>Мои отчеты</h1>
                               </div>
                           </div>
-
+                  <form class="vin">
+                       <p><input name="VIN-код" placeholder="Укажите VIN" class="your_vin"></p>
+                      <a href = "" class="second_button" request> Найти </a>
+                  </form>
             </main>
-            <footer>
-              <div class="pricing_container">
-                <div class="pricing-table">
-                  <div class="col">
-                    <div class="table">
-                        <form class="change_data" method="post" >
-                            {% csrf_token %}
-                      <input type="text" placeholder="Фамилия" class="txtb" value="{{user.last_name}}">
-                      <input type="text" placeholder="Имя" class="txtb" value="{{user.first_name}}" >
-                      <input type="email" placeholder="Почта" class="txtb" value="{{user.email}}">
-                      <a class = "button_pass" href="{% url 'password_reset' %}"> Изменить пароль</a>
-                      <input type="submit"  value="Сохранить" class="signup-btn">
-                            </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </footer>
         </div>
     </body>
     </html>
@@ -113,95 +98,57 @@ main {
     flex-direction: column;
     align-items: center;
 }
-.main_image {
+.vin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 23px;
+    border: none;
+}
+.your_vin {
+    padding: 12px 200px 11px 10px;
+    border: none;
+    border-radius: 5px 0px 0px 5px;
+
 
 }
+input::placeholder {
+    color:  #807f7f;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+      }
 
+input {outline:none;}
+
+.second_button {
+    text-align: center;
+    text-decoration: none;
+    background: #f43648;
+    border: none;
+    border-radius: 0px 5px 5px 0px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 12px 11px 12px;
+    position: relative;
+    right: 2%;
+    top: 31.5%;
+    cursor: pointer;
+
+}
 
 
 footer {
     background: #ddeefc ;
 
 }
-.pricing-table{
-  /*max-width: 1200px;*/
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-wrap: wrap;
 
-}
 
-.col{
- flex:25%;
- padding: 10px;
- max-width: 320px;
- box-sizing: border-box;
- transition: transform 0.5s;
-
-}
-.txtb{
-  border: 0;
-    background: #ffffff;
-    display: block;
-    margin: 10px auto;
-    text-align: center;
-    border: 2px solid #6495ED;
-    padding: 10px 50px;
-    width: 150px;
-    outline: none;
-    border-radius: 5px;
-    transition: 0.25s;
-}
-
-.txtb:focus{
-
-  border-color: #3498db;
-}
-
-.table{
-  background: #fff;
-  padding: 10px 20px;
-  font-family: "montserrat",sans-serif;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 10px #00000070;
-}
-.table a{
-  text-decoration: none;
-  color: #6495ED;
-  border: 2px solid #6495ED;
-  display: block;
-  padding: 10px 0;
-  margin: 10px 0;
-  border-radius: 40px;
-  text-transform: uppercase;
-  font-size: 14px;
-  transition: 0.5s linear;
-}
-
-.table a:hover{
-  background: #6495ED;
-  color: #fff;
-}
-
-.form_input{
-  border: 0;
-  background: #ffffff;
-  display: block;
-  margin: 10px auto;
-  text-align: center;
-  border: 2px solid #6495ED ;
-  padding: 14px 50px;
-  width: 150px;
-  outline: none;
-  border-radius: 5px;
-  transition: 0.25s;
-}
-.form_input:focus{
-
-  border-color: #3498db;
-}
 .dropbtn {
   border-color: transparent;
   background: #f43648;
@@ -247,25 +194,7 @@ footer {
     text-decoration: none;
     display: block;
 }
-.signup-btn{
-  border: 0;
-  background: #fff;
-  display: block;
-  margin:20px auto;
-  text-align: center;
-  border: 2px solid #6495ED ;
-  padding: 10px 20px;
-  outline: none;
-  border-radius: 5px;
-  transition: 0.25s;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-family:"montserrat", sans-serif;
-}
-.signup-btn:hover{
-  background:#DC143C ;
-  border: 2px solid #DC143C ;
-}
+
 .dropdown-content a:hover {background-color: #f43648;}
 
 
@@ -273,47 +202,5 @@ footer {
 
 
 .dropdown:hover .dropbtn {background-color: #f43648;}
-@media  screen and (max-width:980px) {
-  .col{
-    flex:50%;
-  }
-}
-
-@media  screen and (max-width:700px) {
-  .col{
-    flex:100%;
-  }
-}
-@media (max-width: 992px){
-  .col{
-    flex:100%;
-  }
-}
-@media  screen and (max-width:980px) {
-  .main_content{
-    flex:50%;
-    margin: auto;
-  }
-}
-
-@media  screen and (max-width:700px) {
-  .main_content{
-    flex:100%;
-    margin: auto;
-  }
-}
-@media (max-width: 992px){
-  .main_content{
-    flex:100%;
-    margin: auto;
-  }
-}
-
-.button_pass{
-  position: relative;
-  float: center;
-  margin-bottom: -7%;
-}
-
 
 </style>
