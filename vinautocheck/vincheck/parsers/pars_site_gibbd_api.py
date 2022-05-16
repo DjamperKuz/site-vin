@@ -2,7 +2,7 @@ import requests
 import json
 import time
 from fake_useragent import UserAgent
-from vin_number.vinautocheck.vincheck.parsers.pars_settings import save_json
+# from vin_number.vinautocheck.vincheck.parsers.pars_settings import save_json
 
 
 def parse_site_gibdd_api(vin):
@@ -102,4 +102,6 @@ def parse_site_gibdd_api(vin):
 
 
 def main_gibdd_api(vin_num):
-    save_json(parse_site_gibdd_api(vin_num), 'data_gibdd_api')
+    var_json = json.loads(json.dumps(parse_site_gibdd_api(vin_num)))
+    return var_json
+    # save_json(parse_site_gibdd_api(vin_num), 'data_gibdd_api')

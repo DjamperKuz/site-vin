@@ -1,4 +1,5 @@
 {% load static %}
+{% now "Y-m-d" as today_str %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,44 +30,40 @@
                 <div class="main_content">
                   <div class="main_form">
                       <form class="vin">
-                            <h1>Название машины</h1>
-                              <p>Отчёт от "дата"</p>
+                            <h1>{{ history.data.RequestResult.vehicle.model }}</h1>
+                              <p>Отчёт от {{ today_str }}</p>
                         </form>
                     </div>
                     <div class="_2qTXf">
                     <dl class="_2qTXf_left">
                       <dt>VIN</dt>
-                      <dd>{{ VIN }}</dd>
-                      <dt>Госномер</dt>
-                      <dd>Номер</dd>
+                      <dd>{{ history.data.RequestResult.vehicle.vin }}</dd>
                       <dt>Номер кузова</dt>
-                      <dd>Номер</dd>
+                      <dd>{{ history.data.RequestResult.vehicle.bodyNumber }}</dd>
                       <dt>Номер двигателя</dt>
-                      <dd>Номер</dd>
-                      <dt>Номер ПТС</dt>
-                      <dd>Номер</dd>
-                      <dt>Номер СТС</dt>
-                      <dd>Номер</dd>
+                      <dd>{{ history.data.RequestResult.vehicle.engineNumber }}</dd>
                     </dl>
                     <dl class="_2qTXf_right">
                       <dt>Год выпуска</dt>
-                      <dd>Год</dd>
-                      <dt>Тип ТС</dt>
-                      <dd>Тип</dd>
+                      <dd>{{ history.data.RequestResult.vehicle.year }}</dd>
+                      <dt>Категория ТС</dt>
+                      <dd>{{ history.data.RequestResult.vehicle.category }}</dd>
                       <dt>Цвет</dt>
-                      <dd>Цвет</dd>
+                      <dd>{{ history.data.RequestResult.vehicle.color }}</dd>
                       <dt>Объём двигателя</dt>
-                      <dd>Объём</dd>
+                      <dd>{{ history.data.RequestResult.vehicle.engineVolume }}</dd>
                       <dt>Мощность</dt>
-                      <dd>Мощность</dd>
+                      <dd>{{ history.data.RequestResult.vehicle.powerHp }}</dd>
                       <dt>Последний пробег</dt>
-                      <dd>Пробег</dd>
+                      <dd>{{ diagnostic.data.RequestResult.diagnosticCards.0.odometerValue }}</dd>
                     </dl>
                     </div>
                     <div class="_1qtxf">
-                      <p>При осмотре автомобиля всегда сверяйте данные ПТС и VIN с указанными в отчёте.</p>
+                      <p>При осмотре автомобиля всегда сверяйте данные VIN с указанными в отчёте.</p>
                       <p>Рекомендуем перед покупкой автомобиля купить отчёт повторно, чтобы получить актуальную информацию.</p>
                     </div>
+                    <h1>Преимущества</h1>
+            {% if restrict.data.RequestResult.count != 0 %}
             <div class="main_form_2">
               <form class="vin">
                     <h1>Недостатки</h1>
@@ -82,6 +79,10 @@
               <dt>Регион</dt>
               <dd></dd>
             </dl>
+            {% else %}
+            <b>Ограничений на регистрацию нет</b>
+            {% endif %}
+            {% if restrict.data.RequestResult.count != 0 %}
             <div class="main_form_2">
               <form class="vin">
                       <h2>В залоге</h2>
@@ -93,6 +94,10 @@
               <dt>Источники</dt>
               <dd></dd>
             </dl>
+            {% else %}
+            <b>В залоге не находится</b>
+            {% endif %}
+            {% if restrict.data.RequestResult.count != 0 %}
             <div class="main_form_2">
               <form class="vin">
                       <h2>Был в ДТП</h2>
@@ -105,6 +110,10 @@
               <dt>Состояние авто после столкновения</dt>
               <dd></dd>
             </dl>
+            {% else %}
+             <b>ДТП не было</b>
+            {% endif %}
+            {% if restrict.data.RequestResult.count != 0 %}
             <div class="main_form_2">
               <form class="vin">
                       <h2>Розыск</h2>
@@ -117,6 +126,10 @@
               <dt></dt>
               <dd></dd>
             </dl>
+            {% else %}
+             <b>В розыске не находится</b>
+            {% endif %}
+            {% if restrict.data.RequestResult.count != 0 %}
             <form class="vin">
                     <h2>Разрешение на работу в такси</h2>
                     <p>Данные представлены из региональных баз по регистрации автомобиля в качестве такси.</p>
@@ -128,44 +141,40 @@
             <dt></dt>
             <dd></dd>
           </dl>
-            <div class="main_form_2">
-              <form class="vin">
-                    <h1>Преимущества</h1>
-                    <h2></h2>
-                    <p></p>
-              </form>
-          </div>
-          <dl class="_2qTXf_left">
-            <dt></dt>
-            <dd></dd>
-            <dt></dt>
-            <dd></dd>
-            <dt></dt>
-            <dd></dd>
-          </dl>
-          <div class="main_form_2">
-            <form class="vin">
-                  <h1>Прочее</h1>
-                    <h2>Электронный ПТС</h2>
-                  <p></p>
-            </form>
-        </div>
-        <div class="_2qTXf">
-        <dl class="_2qTXf_left">
-          <dt>Утилизационный сбор</dt>
-          <dd></dd>
-          <dt>Таможеное оформление</dt>
-          <dd></dd>
-          <dt>Таможенные ограничения</dt>
-          <dd></dd>
-        </DL>
-          <dl class="_2qTXf_right">
-          <dt>Прочие ограничения</dt>
-          <dd></dd>
-          <dt>Последнее регистрационное действие</dt>
-          <dd></dd>
-        </dl>
-      </div>
+          {% else %}
+          <b>Лицензия на работу в такси отсутствует</b>
+          {% endif %}
+<!--          <dl class="_2qTXf_left">-->
+<!--            <dt></dt>-->
+<!--            <dd></dd>-->
+<!--            <dt></dt>-->
+<!--            <dd></dd>-->
+<!--            <dt></dt>-->
+<!--            <dd></dd>-->
+<!--          </dl>-->
+<!--          <div class="main_form_2">-->
+<!--            <form class="vin">-->
+<!--                  <h1>Прочее</h1>-->
+<!--                    <h2>Электронный ПТС</h2>-->
+<!--                  <p></p>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--        <div class="_2qTXf">-->
+<!--        <dl class="_2qTXf_left">-->
+<!--          <dt>Утилизационный сбор</dt>-->
+<!--          <dd></dd>-->
+<!--          <dt>Таможеное оформление</dt>-->
+<!--          <dd></dd>-->
+<!--          <dt>Таможенные ограничения</dt>-->
+<!--          <dd></dd>-->
+<!--        </DL>-->
+<!--          <dl class="_2qTXf_right">-->
+<!--          <dt>Прочие ограничения</dt>-->
+<!--          <dd></dd>-->
+<!--          <dt>Последнее регистрационное действие</dt>-->
+<!--          <dd></dd>-->
+<!--        </dl>-->
+<!--      </div>-->
         <div class="main_form_2">
           <form class="vin">
             <h2>Техосмотры</h2>
@@ -177,19 +186,25 @@
   </form>
 </div>
 <dl class="_2qTXf_left">
-  <h3>Дата</h3>
+  <h3>Дата {{ diagnostic.data.RequestResult.diagnosticCards.0.dcDate }}</h3>
   <dt>Пробег</dt>
-  <dd>"км</dd>
+  <dd>{{ diagnostic.data.RequestResult.diagnosticCards.0.odometerValue }}</dd>
   <dt>Действителен до</dt>
-    <dd>"дата"</dd>
-    <h3></h3>
-    <dt></dt>
-    <dd></dd>
-    <dt></dt>
-      <dd></dd>
+  <dd>{{ diagnostic.data.RequestResult.diagnosticCards.0.dcExpirationDate }}</dd>
+  <dt>Место</dt>
+  <dd>{{ diagnostic.data.RequestResult.diagnosticCards.0.pointAddress }}</dd>
+  <dt>Номер карты</dt>
+  <dd>{{ diagnostic.data.RequestResult.diagnosticCards.0.dcNumber }}</dd>
+    <h3>Дата {{ diagnostic.data.RequestResult.diagnosticCards.0.previousDcs.0.dcDate }}</h3>
+    <dt>Пробег</dt>
+    <dd>{{ diagnostic.data.RequestResult.diagnosticCards.0.previousDcs.0.odometerValue }}</dd>
+    <dt>Действителен до</dt>
+    <dd>{{ diagnostic.data.RequestResult.diagnosticCards.0.previousDcs.0.dcExpirationDate }}</dd>
+    <dt>Номер карты</dt>
+    <dd>{{ diagnostic.data.RequestResult.diagnosticCards.0.previousDcs.0.dcNumber }}</dd>
 </dl>
       </div>
-    </div>
+     </div>
  </div>
         </main>
 </body>

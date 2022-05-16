@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import login, logout
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import LoginView, PasswordResetConfirmView
@@ -84,8 +86,162 @@ def check_box(request):
 @login_required()
 def online_document(request):
     vin = cache.get('user_vin')
-    data_json = pars_without_reestor_rb(vin)
-
+    data_json = {
+    "history": {
+        "data": {
+            "requestTime": "15.05.2022 18:29",
+            "RequestResult": {
+                "ownershipPeriods": {
+                    "ownershipPeriod": [
+                        {
+                            "lastOperation": "69",
+                            "simplePersonType": "Natural",
+                            "from": "2009-11-12",
+                            "to": "2009-11-12"
+                        },
+                        {
+                            "lastOperation": "62",
+                            "simplePersonType": "Natural",
+                            "from": "2009-11-12",
+                            "to": "2009-11-30"
+                        },
+                        {
+                            "lastOperation": "62",
+                            "simplePersonType": "Natural",
+                            "from": "2009-12-10",
+                            "to": "2010-03-23"
+                        },
+                        {
+                            "lastOperation": "62",
+                            "simplePersonType": "Natural",
+                            "from": "2010-03-30",
+                            "to": "2011-09-07"
+                        },
+                        {
+                            "lastOperation": "12",
+                            "simplePersonType": "Natural",
+                            "from": "2011-09-26",
+                            "to": "2016-08-30"
+                        },
+                        {
+                            "lastOperation": "07",
+                            "simplePersonType": "Natural",
+                            "from": "2016-08-30",
+                            "to": "2022-02-10"
+                        },
+                        {
+                            "lastOperation": "02",
+                            "simplePersonType": "Natural",
+                            "from": "2022-03-05"
+                        }
+                    ]
+                },
+                "vehiclePassport": {},
+                "vehicle": {
+                    "engineVolume": "1596.0",
+                    "color": "ГРАФИТОВЫЙ МЕТАЛ.",
+                    "bodyNumber": "XTA21144094786239",
+                    "year": "2009",
+                    "engineNumber": "5126356",
+                    "vin": "XTA21144094786239",
+                    "model": "ВАЗ 211440 LADA SAMARA ",
+                    "category": "В",
+                    "type": "22",
+                    "powerHp": "81.0",
+                    "powerKwt": "60"
+                }
+            },
+            "hostname": "h6-check2-dc",
+            "vin": "XTA21144094786239",
+            "regnum": "",
+            "message": "ver.3.3",
+            "registerToken": "17411612e1461d81941f21c117a1a71c11d619e1931df11a",
+            "status": 200
+        },
+        "success": 'true'
+    },
+    "dtp": {
+        "data": {
+            "requestTime": "15.05.2022 18:29",
+            "RequestResult": {
+                "errorDescription": "",
+                "statusCode": 1,
+                "Accidents": []
+            },
+            "hostname": "h6-check2-dc",
+            "vin": "XTA21144094786239",
+            "status": 200
+        },
+        "success": 'true'
+    },
+    "wanted": {
+        "data": {
+            "requestTime": "15.05.2022 18:29",
+            "RequestResult": {
+                "records": [],
+                "count": 0,
+                "error": 0
+            },
+            "hostname": "h1-dc",
+            "vin": "XTA21144094786239",
+            "status": 200
+        },
+        "success": 'true'
+    },
+    "restrict": {
+        "data": {
+            "requestTime": "15.05.2022 18:30",
+            "RequestResult": {
+                "records": [],
+                "count": 0,
+                "error": 0
+            },
+            "hostname": "h6-check2-dc",
+            "vin": "XTA21144094786239",
+            "status": 200
+        },
+        "success": 'true'
+    },
+    "diagnostic": {
+        "data": {
+            "requestTime": "15.05.2022 18:30",
+            "RequestResult": {
+                "diagnosticCards": [
+                    {
+                        "dcExpirationDate": "2023-03-04",
+                        "pointAddress": "363331, Северная Осетия - Алания Республика, Ардон г., Ардонский р-н., Алагирская ул., дом 18, ",
+                        "chassis": "",
+                        "body": "",
+                        "operatorName": "11878",
+                        "pdfBase64": 'null',
+                        "odometerValue": "179919",
+                        "dcNumber": "118781012200443",
+                        "dcDate": "2022-03-04",
+                        "previousDcs": [
+                            {
+                                "odometerValue": "201532",
+                                "dcExpirationDate": "2022-01-16",
+                                "dcNumber": "106320012100382",
+                                "dcDate": "2021-01-15"
+                            }
+                        ],
+                        "success": 'true',
+                        "vin": "XTA21144094786239",
+                        "model": "211440",
+                        "brand": "LADA (ВАЗ)"
+                    }
+                ],
+                "error": 'null',
+                "status": "OK"
+            },
+            "hostname": "h6-check1-dc",
+            "vin": "XTA21144094786239",
+            "status": 200
+        },
+        "success": 'true'
+    }
+}
+    # data_json = pars_without_reestor_rb(vin)
     return render(request, 'vincheck/onlinedocument.html', context=data_json)
 
 
