@@ -73,6 +73,7 @@ def personalcabinet(request):
     return render(request, 'vincheck/personalcabinet.html')
 
 
+@login_required()
 def my_inf(request):
     return render(request, 'vincheck/my_inf.html')
 
