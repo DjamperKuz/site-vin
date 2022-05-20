@@ -19,13 +19,13 @@
     <div class='otchet'>
       <p>Онлайн отчет + офлайн отчет</p>
     </div>
-      <input class="checkbox_input" type="checkbox" id="checkbox_1" >
+      <input class="checkbox_input" type="checkbox" value="checkbox_1" id="checkbox_1" name="checkbox_1">
     <label class="checkbox_label" for="checkbox_1">Проверить реестр залогов РБ</label>
     <p>Отчету n дней</p>
     <p>VIN:{{ message }}</p>
   </div>
   <div class="itogo">
-    <p>Итого<сумма></p>
+    <p>Итого: {{ checkbox }} BYN</p>
   </div>
   <div class='button_oplat'>
     <a href="{% url 'online_document' %}" class="oplata">Оплатить картой</a>

@@ -82,7 +82,15 @@ def my_inf(request):
 @login_required()
 def check_box(request):
     vin = cache.get('user_vin')
-    data = {"message": vin}
+    data = {"message": vin, "checkbox": 10}
+    if request.method == "POST":
+        checkbox = request.POST.getlist('checkbox_1')
+
+        if checkbox == ['checkbox_1']:
+            data['checkbox'] = 20
+        else:
+            data['checkbox'] = 10
+        return render(request, "vincheck/check_box.html", context=data)
     return render(request, 'vincheck/check_box.html', context=data)
 
 
