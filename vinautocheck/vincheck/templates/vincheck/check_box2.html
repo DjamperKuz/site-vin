@@ -21,12 +21,16 @@
       <div class='otchet'>
         <p>Онлайн отчет</p>
       </div>
-        <input class="checkbox_input" type="checkbox" value="checkbox_1" id="checkbox_1" name="checkbox_1">
-        <label class="checkbox_label" for="checkbox_1">Проверить реестр залогов РБ</label>
+        <input class="checkbox_input" type="checkbox" value="checkbox_1" id="checkbox_1" name="checkbox_1"
+        data-id="34" data-cost1="9" data-title="Проверить реестр залогов РБ">
+        <span>Проверить реестр залогов РБ</span>
       <p>VIN:{{ message }}</p>
     </div>
-    <div class="itogo">
-      <p>Итого: {{ checkbox }} BYN</p>
+    <div class="priceInfo">
+      <div class="item">
+          <b class="title">Итого (BYN):</b>
+          <b class="price" id="aClassPrice-1">10 </b>
+      </div>
     </div>
     <div class='button_oplat'>
       <button type="submit" class="oplata">Оплатить картой</button>
@@ -51,7 +55,7 @@ body {
 }
 .button_back{
   position: relative;
-  float: left;
+  float: right;
   margin-bottom: -3%;
 }
 .back {
@@ -76,7 +80,7 @@ body {
   height: 20px;
   position: relative;
 }
-.itogo{
+.item{
   position: relative;
   margin-top: 8%;
   font-size: 30px;
@@ -96,6 +100,7 @@ body {
     font-weight: 600;
     padding: 10px 30px 10px 30px;
     text-align: center;
+    border: 0;
 }
 .car{
   display: flex;
@@ -111,7 +116,7 @@ body {
     margin-top: -64%;
     margin-left: 10%;
   }
-  .itogo{
+  .item{
     margin-top: 25%;
   }
   .button_oplat{
@@ -124,7 +129,7 @@ body {
     margin-top: -70%;
     margin-left: 10%;
   }
-  .itogo{
+  .item{
     margin-top: 25%;
   }
   .button_oplat{
@@ -133,3 +138,12 @@ body {
   }
 }
 </style>
+<script>
+        document.querySelectorAll(".checkbox [type=checkbox]").forEach(e => e.onchange = toggleServices);
+        function toggleServices(e) {
+            let sums = [10, 0, 0];
+            document.querySelectorAll(".checkbox [type=checkbox]:checked")
+                .forEach(e => sums.forEach((e2, i, a) => a[i] += +e.dataset["cost" + (i + 1)]));
+            sums.forEach((e, i) => { document.getElementById("aClassPrice-" + (i + 1)).textContent = e; });
+        }
+</script>
