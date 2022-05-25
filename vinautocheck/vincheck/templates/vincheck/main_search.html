@@ -1,4 +1,4 @@
-{% extends 'vincheck/index.html' %}
+{% extends 'vincheck/mainopenpage.html' %}
 
 {% block header_content %}
 {% if request.user.is_authenticated %}
@@ -7,8 +7,6 @@
 <a href="{% url 'signin' %}" class="button_login">Войти</a>
 {% endif %}
 {% endblock %}
-
-{% block href %}{% url 'signin' %} {% endblock %}
 
 {% block fieild %} {{ form.as_p }} {% endblock %}
 

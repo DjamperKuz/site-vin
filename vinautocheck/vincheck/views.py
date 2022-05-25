@@ -27,8 +27,6 @@ def main_search(request):
             vin = form.cleaned_data
             cache.set('user_vin', vin['vin'])
             print(vin)
-            return HttpResponseRedirect('tovar')
-
     # if a GET (or any other method) we'll create a blank form
     else:
         form = VINForm()
