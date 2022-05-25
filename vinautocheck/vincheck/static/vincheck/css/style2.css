@@ -20,8 +20,7 @@ img {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: inherit;
-    font-size: inherit;
+    text-align: center;
 }
 html, body {
     height: 100%;
@@ -71,6 +70,19 @@ header {
 
 }
 .button_personalcabinet {
+    background: #f43648;
+    border-radius: 5px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 30px 10px 30px;
+    position: relative;
+    float: right;
+    text-align: center;
+}
+
+.button_login {
     background: #f43648;
     border-radius: 5px;
     color: white;
@@ -255,7 +267,7 @@ footer {
 .footer_block {
     color: white;
     font-family: "Montserrat";
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: normal;
     line-height: 22px;
 }
@@ -276,4 +288,104 @@ footer {
     .line{
         display: none;
     }
+}
+.modal {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: .3s;
+  transition: .3s;
+  top: -1000px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.9);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  overflow-y: scroll;
+  padding: 60px 15px;
+}
+.modal_active {
+  position: fixed;
+  top: 0;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+.modal__content {
+  width: 100%;
+  max-width: 500px;
+  padding: 50px;
+  background: #f9f9f9;
+  border-radius: 3px;
+  position: relative;
+  box-shadow: 0 5px 15px black;
+  font-family: "montserrat",sans-serif;
+}
+
+.modal__close-button {
+  background: #ff0000;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: none;
+  cursor: pointer;
+  transition: .3s;
+  outline: none;
+}
+
+.modal__close-button:hover {
+  transition: .3s;
+  transform: rotate(180deg);
+}
+
+.modal__title {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin: 0 0 15px;
+}
+
+.modal__description {
+  font-size: 1.125rem;
+  text-align: center;
+}
+.modal__description h2{
+  text-transform: uppercase;
+  text-align: center;
+}
+.modal__content a{
+  text-decoration: none;
+  color: #6495ED;
+  border: 2px solid #6495ED;
+  display: block;
+  padding: 10px 0;
+  margin: 10px 0;
+  border-radius: 40px;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: 0.5s linear;
+  text-align: center;
+}
+
+.modal__content a:hover{
+  background: #6495ED;
+  color: #fff;
+}
+.hidden {
+  overflow: hidden;
 }
