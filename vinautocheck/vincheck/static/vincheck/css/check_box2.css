@@ -1,0 +1,95 @@
+body {
+      display: flex;
+      flex-direction: column;
+      background-color: #ddeefc;
+      font-family: "Montserrat", san-serif;
+      font-size: 18px;
+}
+.otchet{
+  font-size: 30px;
+  font-weight: bold;
+}
+.button_back{
+  position: relative;
+  float: right;
+  margin-bottom: -3%;
+}
+.back {
+    text-decoration: none;
+    background: #f43648;
+    border-radius: 5px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+    float: right;
+}
+.checkbox{
+  display: block;
+  position: relative;
+  margin-top: 10%;
+}
+.checkbox_input{
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+.item{
+  position: relative;
+  margin-top: 8%;
+  font-size: 30px;
+  font-weight: bold
+}
+.button_oplat{
+  position: relative;
+  margin-top: 6%
+}
+.oplata {
+    text-decoration: none;
+    background: #f43648;
+    border-radius: 5px;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+    border: 0;
+}
+.car{
+  display: flex;
+  margin-top: -35%;
+  margin-left: 30%;
+}
+.go{
+  width: 80%;
+  height: 40%;
+}
+@media (max-width: 440.98px){
+  .car{
+    margin-top: -64%;
+    margin-left: 10%;
+  }
+  .item{
+    margin-top: 25%;
+  }
+  .button_oplat{
+    align-self: center;
+    margin-top: 6%;
+  }
+}
+@media (max-width: 280.98px){
+  .car{
+    margin-top: -70%;
+    margin-left: 10%;
+  }
+  .item{
+    margin-top: 25%;
+  }
+  .button_oplat{
+    align-self: center;
+    margin-top: 6%;
+  }
+}
