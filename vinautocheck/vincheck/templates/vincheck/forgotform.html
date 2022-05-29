@@ -4,6 +4,7 @@
   <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcFBv8GBQX/DQ0N8g0NDfIKCgr1CAgI9woKCvUAAQD/ExMT/zQ0NMt5eXmG7e3tEgAAAAAAAAAAAAAAAD0Zyf8HAR7/Z2ho/wsTEP8QDw//FAFa/xABSf8QAUv/FABj/z09Pf9CSUf/MSdk3wAAAAAAAAAAEg8Q/9DR0f8QDA7/2+Pe/9HMzv+vrq//OTg5/xIBVf8VFxb/ERER/4do/P89QT//y8vL/41v//8WAWT/FAFe/xYBaf9KSkr/TCjX/yEZHf8JBgf/Dg8O/yAkIv8PEhH/IgGj/x0Bhv9oRPP/Pz0+/wgJCf8XAWr/FwFq/xcBbv8WAWf/RUdH/2pK4/8tCbj/IgGd/xwBgv8XAW7/FwFp/xcBbf8XAWn/GAFy/z0ZyP+Lbf//e1j//25K+v8ZAXP/GAFx/xsBgP8AAAAAAAAAAI2Au1yGZ///hWX//4ts//+BX///dVH+/29L+v85FcT/RyPS/xYBaP9RLdz/VjLh/2RA7/+Ocf//AAAAAAAAAAAAAAAAAAAAAIeKiP+/v79AZGdm/11dXf9APT7/MDg0/x8mI/+/v79AT05O/1ZeWv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZErG5l9hYP9NTk7/XV1e/1FXVP8mJyf/yMjI//X29f8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD//wAA//8AAIAPAAAADAAAAAAAAAAAAAAAAAAA4AAAAPQTAAD4BwAA//8AAP//AAD//wAA//8AAA==" rel="icon" type="image/x-icon" />
   <meta charset = "utf-8">
   <title> Восстановить пароль </title>
+  <link rel="stylesheet" href='{% static "vincheck/css/forgotform.css" %}'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -16,93 +17,4 @@
 </form>
 </div>
 </body>
-<style media="screen">
-body{
-  margin: 0;
-  padding: 0;
-  font-family: "montserrat", sans-serif;
-  background: #ddeefc;
-}
-
-.forgot-form{
-  width: 300px;
-  padding: 40px;
-  background: #fff;
-  text-align: center;
-  position:absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 24px;
-}
-.forgot-form h1{
-  font-family:"montserrat", sans-serif;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.forgor-form input {
-  display: block;
-  width: 100%;
-  padding: 0 16px;
-  height: 44px;
-  text-align: center;
-  box-sizing: border-box;
-  outline: none;
-  border-radius: 24px;
-  transition: 0.25s;
-}
-.txtb{
-  border: 0;
-  background: #ffffff;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #6495ED ;
-  padding: 14px 10px;
-  width: 200px;
-  outline: none;
-  border-radius: 24px;
-  transition: 0.25s;
-}
-
-.txtb:focus{
-  width: 280px;
-  border-color: #3498db;
-}
-
-.signup-btn{
-  border: 0;
-  background: #fff;
-  display: block;
-  margin:20px auto;
-  text-align: center;
-  border: 2px solid #6495ED ;
-  padding: 14px 40px;
-  outline: none;
-  border-radius: 24px;
-  transition: 0.25s;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-family:"montserrat", sans-serif;
-}
-
-.signup-btn:hover{
-  background:#DC143C ;
-  border: 2px solid #DC143C ;
-}
-
-@media  screen and (max-width:980px) {
-  .forgot-form{
-    flex:50%;
-  }
-}
-
-@media  screen and (max-width:700px) {
-  .forgot-form{
-    flex:100%;
-  }
-}
-
-</style>
 </html>
