@@ -22,9 +22,9 @@ def main_search(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = VINForm(request.POST)
-        result = request.POST.get('vin')
-        cache.set('user_vin', result)
-        print(result)
+        vin = request.POST.get('vin')
+        cache.set('user_vin', vin)
+        print(vin)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = VINForm()
