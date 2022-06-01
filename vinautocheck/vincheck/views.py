@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import LoginView, PasswordResetConfirmView
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy
@@ -22,11 +22,9 @@ def main_search(request):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = VINForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            vin = form.cleaned_data
-            cache.set('user_vin', vin['vin'])
-            print(vin)
+        result = request.POST.get('vin')
+        cache.set('user_vin', result)
+        print(result)
     # if a GET (or any other method) we'll create a blank form
     else:
         form = VINForm()
